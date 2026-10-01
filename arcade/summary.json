@@ -1,0 +1,1322 @@
+{
+  "version": 1,
+  "started": "2026-10-01T10:50:45.754342+00:00",
+  "hardware": "Apple M3 Max, 128 GB unified memory",
+  "suite_sha256": "f3e56fe4eff6687560f182dd69f7356a91c3f1bd7a601eacbee9869347d9faa0",
+  "orders": 2,
+  "game_seeds": [
+    42
+  ],
+  "limits": {
+    "2048": 24,
+    "connect4": 12,
+    "blockstar": 16
+  },
+  "method": "Eight frozen states per game, two deterministic option orders. Every legal action reaches the native decision model. Shared 20-choice group tournament when needed, accepting all policy ties. No heuristic fallback. Serialized inference. Median/P95 use first-order trials, excluding warmups and states identical to warmup; repeated-order timings reported separately. Native caches may still reuse options or prefixes. One capped game per model/game with shared seed-42 starts; trajectories may diverge. Derived one-step/search metrics are supplied, so agreement measures declared-policy following rather than unaided planning or globally optimal play. BlockStar's original 20×18 board is one frozen case in two orders; seven cases and the capped replay are smaller fixtures. Model precision and native layouts differ. Model loading and downloads are excluded; complete decision latency includes every tournament call.",
+  "unavailable": [
+    {
+      "name": "Jev-Omni",
+      "reason": "Official native loader requires CUDA; no Mac result or family substitution."
+    }
+  ],
+  "status": "complete",
+  "active": null,
+  "updated": "2026-10-01T11:17:22.185888+00:00",
+  "models": [
+    {
+      "name": "nimble",
+      "label": "Nimble 9B · Ollama Q8",
+      "status": "complete",
+      "metadata": {
+        "models": [
+          {
+            "name": "nimble:latest",
+            "model": "nimble:latest",
+            "modified_at": "2026-10-01T12:53:43.461075275+10:00",
+            "size": 9527502277,
+            "digest": "24e550a16a7081881be2f1f0d91e8cc13a597472735c04119f035a0a85c67e0c",
+            "details": {
+              "parent_model": "Bespoke-Nimble-9B-merged-current-Q8_0.gguf",
+              "format": "gguf",
+              "family": "qwen35",
+              "families": [
+                "qwen35"
+              ],
+              "parameter_size": "9.0B",
+              "quantization_level": "Q8_0",
+              "context_length": 262144,
+              "embedding_length": 4096
+            },
+            "capabilities": [
+              "decision",
+              "tools",
+              "thinking",
+              "completion"
+            ]
+          }
+        ],
+        "backend": "Ollama native decision API",
+        "version": {
+          "version": "0.35.0"
+        }
+      },
+      "games": {
+        "2048": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 100.0,
+          "median_ms": 493.4,
+          "p95_ms": 527.7,
+          "repeated_median_ms": 556.0,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "2048",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 24,
+              "score": 152,
+              "done": false,
+              "max_tile": 32
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal slide by lexicographically maximizing immediate merge score gained, then empty cells after the slide, then the largest tile. All ties are accepted. Evaluate before the random spawn. This is a one-move benchmark, not an optimal full-game strategy."
+        },
+        "connect4": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 87.5,
+          "median_ms": 1119.0,
+          "p95_ms": 1186.6,
+          "repeated_median_ms": 1176.6,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "connect4",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 12,
+              "score": 0,
+              "done": false,
+              "player": 1,
+              "last_opponent_column": 3
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Play as player 1. Choose the legal column with the highest minimax score after your move, searching four further plies with player 2 to move first. Terminal wins outrank the symmetric window and center heuristic; quicker wins and later losses are preferred. All best-score ties are accepted. Player 2 replies with the same deterministic four-ply minimax search, breaking ties toward the center."
+        },
+        "blockstar": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 62.5,
+          "median_ms": 3724.2,
+          "p95_ms": 31640.8,
+          "repeated_median_ms": 4205.1,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "blockstar",
+              "seed": 42,
+              "status": "solved",
+              "turn": 16,
+              "distance_moved": 24,
+              "source_case": "fixture-replay-five-blocks",
+              "ordered_complete": 5,
+              "score": 5
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal BlockStar slide by this exact lexicographic priority: first maximize ordered_complete (the consecutive target pieces already placed from the start of target_order); then minimize locked_disturbed (pieces of the currently completed prefix displaced by this slide); then minimize active_blocked_cells (other blocks' cells in the better of the active piece's vertical-then-horizontal and horizontal-then-vertical target corridors); then minimize active_distance (anchor Manhattan distance of the first unfinished target piece); then minimize total_distance (sum of all pieces' anchor Manhattan distances); then minimize slide_distance. These metrics are measured AFTER the slide. Any remaining exact tie is acceptable. This is a one-step progress heuristic, not globally optimal puzzle search.",
+          "original_trials": 2,
+          "original_valid": 2,
+          "original_agreement_pct": 0.0,
+          "original_median_ms": 31640.8,
+          "original_note": "One original 20×18 board in two orders; timing uses the first order. Remaining seven boards and capped replay are smaller fixtures. No full original puzzle solve by these models is claimed."
+        }
+      }
+    },
+    {
+      "name": "tev1:4b",
+      "label": "Tev1 4B · Ollama Q8",
+      "status": "complete",
+      "metadata": {
+        "models": [
+          {
+            "name": "tev1:4b",
+            "model": "tev1:4b",
+            "modified_at": "2026-10-01T14:24:32.533865833+10:00",
+            "size": 4482415847,
+            "digest": "cef45ef93cf6df8bf32bdd689b0a8fd01f88ae9034d33ce890c54f77e4cd981e",
+            "details": {
+              "parent_model": "Tev1-4B-Q8_0.gguf",
+              "format": "gguf",
+              "family": "qwen35",
+              "families": [
+                "qwen35"
+              ],
+              "parameter_size": "4.2B",
+              "quantization_level": "Q8_0",
+              "context_length": 262144,
+              "embedding_length": 2560
+            },
+            "capabilities": [
+              "decision",
+              "tools",
+              "thinking",
+              "completion"
+            ]
+          }
+        ],
+        "backend": "Ollama native decision API",
+        "version": {
+          "version": "0.35.0"
+        }
+      },
+      "games": {
+        "2048": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 100.0,
+          "median_ms": 541.4,
+          "p95_ms": 635.5,
+          "repeated_median_ms": 496.6,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "2048",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 24,
+              "score": 156,
+              "done": false,
+              "max_tile": 32
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal slide by lexicographically maximizing immediate merge score gained, then empty cells after the slide, then the largest tile. All ties are accepted. Evaluate before the random spawn. This is a one-move benchmark, not an optimal full-game strategy."
+        },
+        "connect4": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 93.8,
+          "median_ms": 683.7,
+          "p95_ms": 714.1,
+          "repeated_median_ms": 717.8,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "connect4",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 12,
+              "score": 0,
+              "done": false,
+              "player": 1,
+              "last_opponent_column": 3
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Play as player 1. Choose the legal column with the highest minimax score after your move, searching four further plies with player 2 to move first. Terminal wins outrank the symmetric window and center heuristic; quicker wins and later losses are preferred. All best-score ties are accepted. Player 2 replies with the same deterministic four-ply minimax search, breaking ties toward the center."
+        },
+        "blockstar": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 50.0,
+          "median_ms": 1444.8,
+          "p95_ms": 24076.1,
+          "repeated_median_ms": 1149.4,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "blockstar",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 16,
+              "distance_moved": 23,
+              "source_case": "fixture-replay-five-blocks",
+              "ordered_complete": 2,
+              "score": 2
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal BlockStar slide by this exact lexicographic priority: first maximize ordered_complete (the consecutive target pieces already placed from the start of target_order); then minimize locked_disturbed (pieces of the currently completed prefix displaced by this slide); then minimize active_blocked_cells (other blocks' cells in the better of the active piece's vertical-then-horizontal and horizontal-then-vertical target corridors); then minimize active_distance (anchor Manhattan distance of the first unfinished target piece); then minimize total_distance (sum of all pieces' anchor Manhattan distances); then minimize slide_distance. These metrics are measured AFTER the slide. Any remaining exact tie is acceptable. This is a one-step progress heuristic, not globally optimal puzzle search.",
+          "original_trials": 2,
+          "original_valid": 2,
+          "original_agreement_pct": 0.0,
+          "original_median_ms": 24076.1,
+          "original_note": "One original 20×18 board in two orders; timing uses the first order. Remaining seven boards and capped replay are smaller fixtures. No full original puzzle solve by these models is claimed."
+        }
+      }
+    },
+    {
+      "name": "tev1:0.8b",
+      "label": "Tev1 0.8B · Ollama Q8",
+      "status": "complete",
+      "metadata": {
+        "models": [
+          {
+            "name": "tev1:0.8b",
+            "model": "tev1:0.8b",
+            "modified_at": "2026-10-01T14:24:05.209478666+10:00",
+            "size": 811856202,
+            "digest": "d45e875d63fed9465390a4eb9e55f51f470390a446667b55d0a075a15e0336bf",
+            "details": {
+              "parent_model": "Tev1-0.8B-Q8_0.gguf",
+              "format": "gguf",
+              "family": "qwen35",
+              "families": [
+                "qwen35"
+              ],
+              "parameter_size": "752.39M",
+              "quantization_level": "Q8_0",
+              "context_length": 262144,
+              "embedding_length": 1024
+            },
+            "capabilities": [
+              "decision",
+              "tools",
+              "thinking",
+              "completion"
+            ]
+          }
+        ],
+        "backend": "Ollama native decision API",
+        "version": {
+          "version": "0.35.0"
+        }
+      },
+      "games": {
+        "2048": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 93.8,
+          "median_ms": 96.2,
+          "p95_ms": 100.9,
+          "repeated_median_ms": 102.5,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "2048",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 24,
+              "score": 116,
+              "done": false,
+              "max_tile": 16
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal slide by lexicographically maximizing immediate merge score gained, then empty cells after the slide, then the largest tile. All ties are accepted. Evaluate before the random spawn. This is a one-move benchmark, not an optimal full-game strategy."
+        },
+        "connect4": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 81.2,
+          "median_ms": 121.4,
+          "p95_ms": 134.5,
+          "repeated_median_ms": 121.3,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "connect4",
+              "seed": 42,
+              "status": "lost",
+              "turn": 9,
+              "score": -1,
+              "done": true,
+              "player": 1,
+              "last_opponent_column": 1
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Play as player 1. Choose the legal column with the highest minimax score after your move, searching four further plies with player 2 to move first. Terminal wins outrank the symmetric window and center heuristic; quicker wins and later losses are preferred. All best-score ties are accepted. Player 2 replies with the same deterministic four-ply minimax search, breaking ties toward the center."
+        },
+        "blockstar": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 25.0,
+          "median_ms": 253.8,
+          "p95_ms": 3845.6,
+          "repeated_median_ms": 192.2,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "blockstar",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 16,
+              "distance_moved": 18,
+              "source_case": "fixture-replay-five-blocks",
+              "ordered_complete": 1,
+              "score": 1
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal BlockStar slide by this exact lexicographic priority: first maximize ordered_complete (the consecutive target pieces already placed from the start of target_order); then minimize locked_disturbed (pieces of the currently completed prefix displaced by this slide); then minimize active_blocked_cells (other blocks' cells in the better of the active piece's vertical-then-horizontal and horizontal-then-vertical target corridors); then minimize active_distance (anchor Manhattan distance of the first unfinished target piece); then minimize total_distance (sum of all pieces' anchor Manhattan distances); then minimize slide_distance. These metrics are measured AFTER the slide. Any remaining exact tie is acceptable. This is a one-step progress heuristic, not globally optimal puzzle search.",
+          "original_trials": 2,
+          "original_valid": 2,
+          "original_agreement_pct": 0.0,
+          "original_median_ms": 3845.6,
+          "original_note": "One original 20×18 board in two orders; timing uses the first order. Remaining seven boards and capped replay are smaller fixtures. No full original puzzle solve by these models is claimed."
+        }
+      }
+    },
+    {
+      "name": "winnow:e4b",
+      "label": "Winnow E4B · Metal Q8",
+      "status": "complete",
+      "metadata": {
+        "repo": "EldanRing/Winnow-E4B",
+        "checkpoint": "1b257e8fa80b270a62338362a8b35e37f7890273",
+        "ollaya": "0.8.0",
+        "manifest": {
+          "schemaVersion": 2,
+          "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+          "config": {
+            "mediaType": "application/vnd.ollaya.config.v1+json",
+            "digest": "sha256:274b51337582ffed72cbc67ac9508949b4c7da8bf3d9f6e673b2be864ac3dbb3",
+            "size": 510,
+            "urls": [
+              "https://ollaya.dev/blobs/sha256-274b51337582ffed72cbc67ac9508949b4c7da8bf3d9f6e673b2be864ac3dbb3"
+            ]
+          },
+          "layers": [
+            {
+              "mediaType": "application/vnd.ollaya.weights.gguf",
+              "digest": "sha256:840e3f50e5a9c218727f44e121d1b37cc9e2c3b318c8eb422ba6ef2e27b618a2",
+              "size": 8005437472,
+              "urls": [
+                "https://huggingface.co/EldanRing/Winnow-E4B/resolve/734302fe5fbfeb3f21a7ece62653c9539be4aaf3/gguf/Winnow-E4B-Q8_0.gguf"
+              ],
+              "annotations": {
+                "org.ollaya.quantization": "Q8_0"
+              }
+            },
+            {
+              "mediaType": "application/vnd.ollaya.decision",
+              "digest": "sha256:3b76b10f430adffd51097e0dc97ae676a1f60e8f216a00e6aacb48faf95be5ad",
+              "size": 2058,
+              "urls": [
+                "https://ollaya.dev/blobs/sha256-3b76b10f430adffd51097e0dc97ae676a1f60e8f216a00e6aacb48faf95be5ad"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ollaya.calibration",
+              "digest": "sha256:82007815eb87481ab1f03d337327145c615e0220ba4648e32d95175c36da023c",
+              "size": 258,
+              "urls": [
+                "https://ollaya.dev/blobs/sha256-82007815eb87481ab1f03d337327145c615e0220ba4648e32d95175c36da023c"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ollaya.license",
+              "digest": "sha256:b8186b826818c648764eaae1f08d4006208c078217497425c3df8666a4b4be35",
+              "size": 11204,
+              "urls": [
+                "https://ollaya.dev/blobs/sha256-b8186b826818c648764eaae1f08d4006208c078217497425c3df8666a4b4be35"
+              ]
+            }
+          ]
+        },
+        "models": [
+          {
+            "name": "winnow:e4b",
+            "description": "Winnow-E4B (Gemma 4 E4B IT fine-tune), Q8_0 GGUF on llama.cpp: option-label logits after Winnow's own prompt, with the author's fitted temperature.",
+            "release_date": "2026-09-24"
+          }
+        ],
+        "metadata_captured": "2026-10-01T10:57:42.537817+00:00"
+      },
+      "games": {
+        "2048": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 100.0,
+          "median_ms": 390.8,
+          "p95_ms": 435.3,
+          "repeated_median_ms": 352.0,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "2048",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 24,
+              "score": 160,
+              "done": false,
+              "max_tile": 32
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal slide by lexicographically maximizing immediate merge score gained, then empty cells after the slide, then the largest tile. All ties are accepted. Evaluate before the random spawn. This is a one-move benchmark, not an optimal full-game strategy."
+        },
+        "connect4": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 100.0,
+          "median_ms": 558.5,
+          "p95_ms": 619.0,
+          "repeated_median_ms": 568.7,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "connect4",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 12,
+              "score": 0,
+              "done": false,
+              "player": 1,
+              "last_opponent_column": 3
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Play as player 1. Choose the legal column with the highest minimax score after your move, searching four further plies with player 2 to move first. Terminal wins outrank the symmetric window and center heuristic; quicker wins and later losses are preferred. All best-score ties are accepted. Player 2 replies with the same deterministic four-ply minimax search, breaking ties toward the center."
+        },
+        "blockstar": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 56.2,
+          "median_ms": 1192.9,
+          "p95_ms": 14621.3,
+          "repeated_median_ms": 1240.7,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "blockstar",
+              "seed": 42,
+              "status": "solved",
+              "turn": 8,
+              "distance_moved": 12,
+              "source_case": "fixture-replay-five-blocks",
+              "ordered_complete": 5,
+              "score": 5
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal BlockStar slide by this exact lexicographic priority: first maximize ordered_complete (the consecutive target pieces already placed from the start of target_order); then minimize locked_disturbed (pieces of the currently completed prefix displaced by this slide); then minimize active_blocked_cells (other blocks' cells in the better of the active piece's vertical-then-horizontal and horizontal-then-vertical target corridors); then minimize active_distance (anchor Manhattan distance of the first unfinished target piece); then minimize total_distance (sum of all pieces' anchor Manhattan distances); then minimize slide_distance. These metrics are measured AFTER the slide. Any remaining exact tie is acceptable. This is a one-step progress heuristic, not globally optimal puzzle search.",
+          "original_trials": 2,
+          "original_valid": 2,
+          "original_agreement_pct": 0.0,
+          "original_median_ms": 14621.3,
+          "original_note": "One original 20×18 board in two orders; timing uses the first order. Remaining seven boards and capped replay are smaller fixtures. No full original puzzle solve by these models is claimed."
+        }
+      }
+    },
+    {
+      "name": "julia-1:mps",
+      "label": "Julia-1 · MPS FP32",
+      "status": "complete",
+      "metadata": {
+        "repo": "SupersonicLabs/Julia-1",
+        "checkpoint": "a85b127321d580d65176c89ced8273f305745d85",
+        "models": [
+          {
+            "device": "mps",
+            "dtype": "float32",
+            "backend": "native Julia / PyTorch with MPS batch placement adapter",
+            "max_len": 8192,
+            "head_max_len": 2048,
+            "model": "julia-1:mps",
+            "torch": "2.14.1",
+            "transformers": "5.0.0"
+          }
+        ],
+        "metadata_captured": "2026-10-01T10:59:36.491744+00:00"
+      },
+      "games": {
+        "2048": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 87.5,
+          "median_ms": 27.8,
+          "p95_ms": 344.1,
+          "repeated_median_ms": 25.6,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "2048",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 24,
+              "score": 116,
+              "done": false,
+              "max_tile": 16
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal slide by lexicographically maximizing immediate merge score gained, then empty cells after the slide, then the largest tile. All ties are accepted. Evaluate before the random spawn. This is a one-move benchmark, not an optimal full-game strategy."
+        },
+        "connect4": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 12.5,
+          "median_ms": 34.1,
+          "p95_ms": 201.5,
+          "repeated_median_ms": 31.0,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "connect4",
+              "seed": 42,
+              "status": "lost",
+              "turn": 6,
+              "score": -1,
+              "done": true,
+              "player": 1,
+              "last_opponent_column": 4
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Play as player 1. Choose the legal column with the highest minimax score after your move, searching four further plies with player 2 to move first. Terminal wins outrank the symmetric window and center heuristic; quicker wins and later losses are preferred. All best-score ties are accepted. Player 2 replies with the same deterministic four-ply minimax search, breaking ties toward the center."
+        },
+        "blockstar": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 12.5,
+          "median_ms": 171.3,
+          "p95_ms": 801.4,
+          "repeated_median_ms": 39.7,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "blockstar",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 16,
+              "distance_moved": 19,
+              "source_case": "fixture-replay-five-blocks",
+              "ordered_complete": 0,
+              "score": 0
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal BlockStar slide by this exact lexicographic priority: first maximize ordered_complete (the consecutive target pieces already placed from the start of target_order); then minimize locked_disturbed (pieces of the currently completed prefix displaced by this slide); then minimize active_blocked_cells (other blocks' cells in the better of the active piece's vertical-then-horizontal and horizontal-then-vertical target corridors); then minimize active_distance (anchor Manhattan distance of the first unfinished target piece); then minimize total_distance (sum of all pieces' anchor Manhattan distances); then minimize slide_distance. These metrics are measured AFTER the slide. Any remaining exact tie is acceptable. This is a one-step progress heuristic, not globally optimal puzzle search.",
+          "original_trials": 2,
+          "original_valid": 2,
+          "original_agreement_pct": 0.0,
+          "original_median_ms": 801.4,
+          "original_note": "One original 20×18 board in two orders; timing uses the first order. Remaining seven boards and capped replay are smaller fixtures. No full original puzzle solve by these models is claimed."
+        }
+      }
+    },
+    {
+      "name": "laya:en-mps",
+      "label": "Laya English · MPS FP32",
+      "status": "complete",
+      "metadata": {
+        "checkpoint": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+        "repo": "convaiinnovations/laya",
+        "native_source": "6d942c92081fbc139e736bbd9ac0023223c29b7f",
+        "models": [
+          {
+            "device": "mps",
+            "dtype": "torch.float32",
+            "backend": "native Laya / PyTorch",
+            "max_len": 8192,
+            "head_max_len": 2048,
+            "note": "Extended lossless context; English checkpoint trained with a 512-token default. Native runtime clamps out-of-range shipped choice calibration temperatures.",
+            "model": "laya:en-mps",
+            "torch": "2.14.1",
+            "transformers": "5.18.0"
+          }
+        ],
+        "metadata_captured": "2026-10-01T11:00:08.144294+00:00"
+      },
+      "games": {
+        "2048": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 75.0,
+          "median_ms": 50.2,
+          "p95_ms": 59.7,
+          "repeated_median_ms": 43.8,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "2048",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 24,
+              "score": 96,
+              "done": false,
+              "max_tile": 16
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal slide by lexicographically maximizing immediate merge score gained, then empty cells after the slide, then the largest tile. All ties are accepted. Evaluate before the random spawn. This is a one-move benchmark, not an optimal full-game strategy."
+        },
+        "connect4": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 6.2,
+          "median_ms": 60.6,
+          "p95_ms": 77.6,
+          "repeated_median_ms": 52.5,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "connect4",
+              "seed": 42,
+              "status": "lost",
+              "turn": 4,
+              "score": -1,
+              "done": true,
+              "player": 1,
+              "last_opponent_column": 2
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Play as player 1. Choose the legal column with the highest minimax score after your move, searching four further plies with player 2 to move first. Terminal wins outrank the symmetric window and center heuristic; quicker wins and later losses are preferred. All best-score ties are accepted. Player 2 replies with the same deterministic four-ply minimax search, breaking ties toward the center."
+        },
+        "blockstar": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 18.8,
+          "median_ms": 130.0,
+          "p95_ms": 2635.9,
+          "repeated_median_ms": 103.8,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "blockstar",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 16,
+              "distance_moved": 19,
+              "source_case": "fixture-replay-five-blocks",
+              "ordered_complete": 0,
+              "score": 0
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal BlockStar slide by this exact lexicographic priority: first maximize ordered_complete (the consecutive target pieces already placed from the start of target_order); then minimize locked_disturbed (pieces of the currently completed prefix displaced by this slide); then minimize active_blocked_cells (other blocks' cells in the better of the active piece's vertical-then-horizontal and horizontal-then-vertical target corridors); then minimize active_distance (anchor Manhattan distance of the first unfinished target piece); then minimize total_distance (sum of all pieces' anchor Manhattan distances); then minimize slide_distance. These metrics are measured AFTER the slide. Any remaining exact tie is acceptable. This is a one-step progress heuristic, not globally optimal puzzle search.",
+          "original_trials": 2,
+          "original_valid": 2,
+          "original_agreement_pct": 0.0,
+          "original_median_ms": 2635.9,
+          "original_note": "One original 20×18 board in two orders; timing uses the first order. Remaining seven boards and capped replay are smaller fixtures. No full original puzzle solve by these models is claimed."
+        }
+      }
+    },
+    {
+      "name": "laya:multilingual-mps",
+      "label": "Laya multilingual · MPS FP32",
+      "status": "complete",
+      "metadata": {
+        "repo": "convaiinnovations/laya",
+        "checkpoint": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+        "models": [
+          {
+            "device": "mps",
+            "dtype": "torch.float32",
+            "backend": "native Laya / PyTorch",
+            "max_len": 8192,
+            "head_max_len": 2048,
+            "note": "Native multilingual checkpoint supports extended 8192-token context. Lossless inputs.",
+            "model": "laya:multilingual-mps",
+            "torch": "2.14.1",
+            "transformers": "5.18.0"
+          }
+        ],
+        "metadata_captured": "2026-10-01T11:00:50.338927+00:00"
+      },
+      "games": {
+        "2048": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 75.0,
+          "median_ms": 43.7,
+          "p95_ms": 174.6,
+          "repeated_median_ms": 34.4,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "2048",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 24,
+              "score": 144,
+              "done": false,
+              "max_tile": 32
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal slide by lexicographically maximizing immediate merge score gained, then empty cells after the slide, then the largest tile. All ties are accepted. Evaluate before the random spawn. This is a one-move benchmark, not an optimal full-game strategy."
+        },
+        "connect4": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 18.8,
+          "median_ms": 41.8,
+          "p95_ms": 49.4,
+          "repeated_median_ms": 43.9,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "connect4",
+              "seed": 42,
+              "status": "lost",
+              "turn": 5,
+              "score": -1,
+              "done": true,
+              "player": 1,
+              "last_opponent_column": 2
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Play as player 1. Choose the legal column with the highest minimax score after your move, searching four further plies with player 2 to move first. Terminal wins outrank the symmetric window and center heuristic; quicker wins and later losses are preferred. All best-score ties are accepted. Player 2 replies with the same deterministic four-ply minimax search, breaking ties toward the center."
+        },
+        "blockstar": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 18.8,
+          "median_ms": 129.1,
+          "p95_ms": 1356.8,
+          "repeated_median_ms": 64.8,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "blockstar",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 16,
+              "distance_moved": 19,
+              "source_case": "fixture-replay-five-blocks",
+              "ordered_complete": 0,
+              "score": 0
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal BlockStar slide by this exact lexicographic priority: first maximize ordered_complete (the consecutive target pieces already placed from the start of target_order); then minimize locked_disturbed (pieces of the currently completed prefix displaced by this slide); then minimize active_blocked_cells (other blocks' cells in the better of the active piece's vertical-then-horizontal and horizontal-then-vertical target corridors); then minimize active_distance (anchor Manhattan distance of the first unfinished target piece); then minimize total_distance (sum of all pieces' anchor Manhattan distances); then minimize slide_distance. These metrics are measured AFTER the slide. Any remaining exact tie is acceptable. This is a one-step progress heuristic, not globally optimal puzzle search.",
+          "original_trials": 2,
+          "original_valid": 2,
+          "original_agreement_pct": 0.0,
+          "original_median_ms": 1356.8,
+          "original_note": "One original 20×18 board in two orders; timing uses the first order. Remaining seven boards and capped replay are smaller fixtures. No full original puzzle solve by these models is claimed."
+        }
+      }
+    },
+    {
+      "name": "kev:4b-mlx",
+      "label": "Kev 4B · MLX BF16",
+      "status": "complete",
+      "metadata": {
+        "repo": "jaredpalmer/kev-4b",
+        "checkpoint": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+        "native_source": "90512f1c517d977741f2104470a40635408236c9",
+        "models": [
+          {
+            "name": "kev-latest",
+            "description": "Kev pointer head on Qwen/Qwen3.5-4B-Base, serving /Users/jso/code/documentation/tetris/hf/models/kev at temperature 2.41",
+            "release_date": "2026-10-01",
+            "run": "/Users/jso/code/documentation/tetris/hf/models/kev",
+            "base": "Qwen/Qwen3.5-4B-Base",
+            "lora": 16,
+            "device": "mps",
+            "backend": "mlx",
+            "dtype": "bfloat16",
+            "temperature": 2.406050072164233,
+            "max_state_tokens": 65536,
+            "truncate_states": false,
+            "cuda_graphs": null,
+            "prefix_cache": {
+              "size": 4,
+              "min_state_tokens": 0,
+              "max_tokens": 65536,
+              "hits": 0,
+              "misses": 0,
+              "cached_states": 0,
+              "oom_retries": 0
+            },
+            "batches": {
+              "count": 0,
+              "requests": 0,
+              "queued": 0
+            }
+          },
+          {
+            "name": "jev-latest",
+            "description": "Kev pointer head on Qwen/Qwen3.5-4B-Base, serving /Users/jso/code/documentation/tetris/hf/models/kev at temperature 2.41",
+            "release_date": "2026-10-01",
+            "run": "/Users/jso/code/documentation/tetris/hf/models/kev",
+            "base": "Qwen/Qwen3.5-4B-Base",
+            "lora": 16,
+            "device": "mps",
+            "backend": "mlx",
+            "dtype": "bfloat16",
+            "temperature": 2.406050072164233,
+            "max_state_tokens": 65536,
+            "truncate_states": false,
+            "cuda_graphs": null,
+            "prefix_cache": {
+              "size": 4,
+              "min_state_tokens": 0,
+              "max_tokens": 65536,
+              "hits": 0,
+              "misses": 0,
+              "cached_states": 0,
+              "oom_retries": 0
+            },
+            "batches": {
+              "count": 0,
+              "requests": 0,
+              "queued": 0
+            }
+          }
+        ],
+        "metadata_captured": "2026-10-01T11:01:35.708541+00:00"
+      },
+      "games": {
+        "2048": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 100.0,
+          "median_ms": 188.5,
+          "p95_ms": 255.0,
+          "repeated_median_ms": 180.1,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "2048",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 24,
+              "score": 100,
+              "done": false,
+              "max_tile": 16
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal slide by lexicographically maximizing immediate merge score gained, then empty cells after the slide, then the largest tile. All ties are accepted. Evaluate before the random spawn. This is a one-move benchmark, not an optimal full-game strategy."
+        },
+        "connect4": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 68.8,
+          "median_ms": 344.3,
+          "p95_ms": 424.0,
+          "repeated_median_ms": 340.5,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "connect4",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 12,
+              "score": 0,
+              "done": false,
+              "player": 1,
+              "last_opponent_column": 5
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Play as player 1. Choose the legal column with the highest minimax score after your move, searching four further plies with player 2 to move first. Terminal wins outrank the symmetric window and center heuristic; quicker wins and later losses are preferred. All best-score ties are accepted. Player 2 replies with the same deterministic four-ply minimax search, breaking ties toward the center."
+        },
+        "blockstar": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 37.5,
+          "median_ms": 1018.7,
+          "p95_ms": 11117.9,
+          "repeated_median_ms": 839.9,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "blockstar",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 16,
+              "distance_moved": 25,
+              "source_case": "fixture-replay-five-blocks",
+              "ordered_complete": 3,
+              "score": 3
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal BlockStar slide by this exact lexicographic priority: first maximize ordered_complete (the consecutive target pieces already placed from the start of target_order); then minimize locked_disturbed (pieces of the currently completed prefix displaced by this slide); then minimize active_blocked_cells (other blocks' cells in the better of the active piece's vertical-then-horizontal and horizontal-then-vertical target corridors); then minimize active_distance (anchor Manhattan distance of the first unfinished target piece); then minimize total_distance (sum of all pieces' anchor Manhattan distances); then minimize slide_distance. These metrics are measured AFTER the slide. Any remaining exact tie is acceptable. This is a one-step progress heuristic, not globally optimal puzzle search.",
+          "original_trials": 2,
+          "original_valid": 2,
+          "original_agreement_pct": 0.0,
+          "original_median_ms": 11117.9,
+          "original_note": "One original 20×18 board in two orders; timing uses the first order. Remaining seven boards and capped replay are smaller fixtures. No full original puzzle solve by these models is claimed."
+        }
+      }
+    },
+    {
+      "name": "kev:4b-mps",
+      "label": "Kev 4B · MPS BF16",
+      "status": "complete",
+      "metadata": {
+        "repo": "jaredpalmer/kev-4b",
+        "checkpoint": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+        "native_source": "90512f1c517d977741f2104470a40635408236c9",
+        "models": [
+          {
+            "name": "kev-latest",
+            "description": "Kev pointer head on Qwen/Qwen3.5-4B-Base, serving /Users/jso/code/documentation/tetris/hf/models/kev at temperature 2.41",
+            "release_date": "2026-10-01",
+            "run": "/Users/jso/code/documentation/tetris/hf/models/kev",
+            "base": "Qwen/Qwen3.5-4B-Base",
+            "lora": 16,
+            "device": "mps",
+            "backend": "torch",
+            "dtype": "bfloat16",
+            "temperature": 2.406050072164233,
+            "max_state_tokens": 65536,
+            "truncate_states": false,
+            "cuda_graphs": null,
+            "prefix_cache": {
+              "size": 4,
+              "min_state_tokens": 0,
+              "max_tokens": 65536,
+              "hits": 0,
+              "misses": 0,
+              "cached_states": 0,
+              "oom_retries": 0
+            },
+            "batches": {
+              "count": 0,
+              "requests": 0,
+              "queued": 0
+            }
+          },
+          {
+            "name": "jev-latest",
+            "description": "Kev pointer head on Qwen/Qwen3.5-4B-Base, serving /Users/jso/code/documentation/tetris/hf/models/kev at temperature 2.41",
+            "release_date": "2026-10-01",
+            "run": "/Users/jso/code/documentation/tetris/hf/models/kev",
+            "base": "Qwen/Qwen3.5-4B-Base",
+            "lora": 16,
+            "device": "mps",
+            "backend": "torch",
+            "dtype": "bfloat16",
+            "temperature": 2.406050072164233,
+            "max_state_tokens": 65536,
+            "truncate_states": false,
+            "cuda_graphs": null,
+            "prefix_cache": {
+              "size": 4,
+              "min_state_tokens": 0,
+              "max_tokens": 65536,
+              "hits": 0,
+              "misses": 0,
+              "cached_states": 0,
+              "oom_retries": 0
+            },
+            "batches": {
+              "count": 0,
+              "requests": 0,
+              "queued": 0
+            }
+          }
+        ],
+        "metadata_captured": "2026-10-01T11:03:29.946464+00:00"
+      },
+      "games": {
+        "2048": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 100.0,
+          "median_ms": 812.5,
+          "p95_ms": 1645.8,
+          "repeated_median_ms": 647.2,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "2048",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 24,
+              "score": 100,
+              "done": false,
+              "max_tile": 16
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal slide by lexicographically maximizing immediate merge score gained, then empty cells after the slide, then the largest tile. All ties are accepted. Evaluate before the random spawn. This is a one-move benchmark, not an optimal full-game strategy."
+        },
+        "connect4": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 68.8,
+          "median_ms": 1133.6,
+          "p95_ms": 1302.8,
+          "repeated_median_ms": 1127.1,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "connect4",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 12,
+              "score": 0,
+              "done": false,
+              "player": 1,
+              "last_opponent_column": 5
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Play as player 1. Choose the legal column with the highest minimax score after your move, searching four further plies with player 2 to move first. Terminal wins outrank the symmetric window and center heuristic; quicker wins and later losses are preferred. All best-score ties are accepted. Player 2 replies with the same deterministic four-ply minimax search, breaking ties toward the center."
+        },
+        "blockstar": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 37.5,
+          "median_ms": 2886.9,
+          "p95_ms": 25139.3,
+          "repeated_median_ms": 2422.8,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "blockstar",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 16,
+              "distance_moved": 25,
+              "source_case": "fixture-replay-five-blocks",
+              "ordered_complete": 3,
+              "score": 3
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal BlockStar slide by this exact lexicographic priority: first maximize ordered_complete (the consecutive target pieces already placed from the start of target_order); then minimize locked_disturbed (pieces of the currently completed prefix displaced by this slide); then minimize active_blocked_cells (other blocks' cells in the better of the active piece's vertical-then-horizontal and horizontal-then-vertical target corridors); then minimize active_distance (anchor Manhattan distance of the first unfinished target piece); then minimize total_distance (sum of all pieces' anchor Manhattan distances); then minimize slide_distance. These metrics are measured AFTER the slide. Any remaining exact tie is acceptable. This is a one-step progress heuristic, not globally optimal puzzle search.",
+          "original_trials": 2,
+          "original_valid": 2,
+          "original_agreement_pct": 0.0,
+          "original_median_ms": 25139.3,
+          "original_note": "One original 20×18 board in two orders; timing uses the first order. Remaining seven boards and capped replay are smaller fixtures. No full original puzzle solve by these models is claimed."
+        }
+      }
+    },
+    {
+      "name": "clm:8b-mps",
+      "label": "CLM 8B · MPS BF16",
+      "status": "complete",
+      "metadata": {
+        "repo": "Contrastive-LM/CLM-v0.1-8B",
+        "checkpoint": "e939398d4556fcd9400c76fa8c5a513202f42b0a",
+        "models": [
+          {
+            "device": "mps:0",
+            "dtype": "bfloat16 encoder / float32 native heads",
+            "backend": "HF Qwen3 last-token embedding adapter + native CLM heads/schema",
+            "encoder_cache": true,
+            "projection_cache": false,
+            "max_len": 2048,
+            "note": "Cached repeated states/options included in overall median; fresh first-order timing reported separately.",
+            "model": "clm:8b-mps",
+            "torch": "2.14.1",
+            "transformers": "5.18.0"
+          }
+        ],
+        "metadata_captured": "2026-10-01T11:07:31.923651+00:00"
+      },
+      "games": {
+        "2048": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 75.0,
+          "median_ms": 333.1,
+          "p95_ms": 820.4,
+          "repeated_median_ms": 4.5,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "2048",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 24,
+              "score": 64,
+              "done": false,
+              "max_tile": 8
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal slide by lexicographically maximizing immediate merge score gained, then empty cells after the slide, then the largest tile. All ties are accepted. Evaluate before the random spawn. This is a one-move benchmark, not an optimal full-game strategy."
+        },
+        "connect4": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 12.5,
+          "median_ms": 708.0,
+          "p95_ms": 849.5,
+          "repeated_median_ms": 4.8,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "connect4",
+              "seed": 42,
+              "status": "lost",
+              "turn": 4,
+              "score": -1,
+              "done": true,
+              "player": 1,
+              "last_opponent_column": 3
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Play as player 1. Choose the legal column with the highest minimax score after your move, searching four further plies with player 2 to move first. Terminal wins outrank the symmetric window and center heuristic; quicker wins and later losses are preferred. All best-score ties are accepted. Player 2 replies with the same deterministic four-ply minimax search, breaking ties toward the center."
+        },
+        "blockstar": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 12.5,
+          "median_ms": 1623.2,
+          "p95_ms": 15692.3,
+          "repeated_median_ms": 4.7,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "blockstar",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 16,
+              "distance_moved": 16,
+              "source_case": "fixture-replay-five-blocks",
+              "ordered_complete": 0,
+              "score": 0
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal BlockStar slide by this exact lexicographic priority: first maximize ordered_complete (the consecutive target pieces already placed from the start of target_order); then minimize locked_disturbed (pieces of the currently completed prefix displaced by this slide); then minimize active_blocked_cells (other blocks' cells in the better of the active piece's vertical-then-horizontal and horizontal-then-vertical target corridors); then minimize active_distance (anchor Manhattan distance of the first unfinished target piece); then minimize total_distance (sum of all pieces' anchor Manhattan distances); then minimize slide_distance. These metrics are measured AFTER the slide. Any remaining exact tie is acceptable. This is a one-step progress heuristic, not globally optimal puzzle search.",
+          "original_trials": 2,
+          "original_valid": 2,
+          "original_agreement_pct": 0.0,
+          "original_median_ms": 15692.3,
+          "original_note": "One original 20×18 board in two orders; timing uses the first order. Remaining seven boards and capped replay are smaller fixtures. No full original puzzle solve by these models is claimed."
+        }
+      }
+    },
+    {
+      "name": "lev:4b-mps",
+      "label": "Lev 4B · MPS BF16",
+      "status": "complete",
+      "metadata": {
+        "repo": "interfaze-ai/lev",
+        "checkpoint": "f8ef71157ec06a7d3b6435bc0756f9d735c33748",
+        "models": [
+          {
+            "device": "mps:0",
+            "dtype": "bfloat16",
+            "backend": "native Lev decision engine / PyTorch with MPS placement adapter",
+            "note": "Author loader targets CUDA/CPU; adapter moves unchanged model/head to MPS. No CPU fallback.",
+            "model": "lev:4b-mps",
+            "torch": "2.14.1",
+            "transformers": "5.18.0"
+          }
+        ],
+        "metadata_captured": "2026-10-01T11:09:14.012430+00:00"
+      },
+      "games": {
+        "2048": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 100.0,
+          "median_ms": 1623.5,
+          "p95_ms": 1751.7,
+          "repeated_median_ms": 1498.2,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "2048",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 24,
+              "score": 156,
+              "done": false,
+              "max_tile": 32
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal slide by lexicographically maximizing immediate merge score gained, then empty cells after the slide, then the largest tile. All ties are accepted. Evaluate before the random spawn. This is a one-move benchmark, not an optimal full-game strategy."
+        },
+        "connect4": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 100.0,
+          "median_ms": 2645.3,
+          "p95_ms": 2741.8,
+          "repeated_median_ms": 2566.2,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "connect4",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 12,
+              "score": 0,
+              "done": false,
+              "player": 1,
+              "last_opponent_column": 3
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Play as player 1. Choose the legal column with the highest minimax score after your move, searching four further plies with player 2 to move first. Terminal wins outrank the symmetric window and center heuristic; quicker wins and later losses are preferred. All best-score ties are accepted. Player 2 replies with the same deterministic four-ply minimax search, breaking ties toward the center."
+        },
+        "blockstar": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 50.0,
+          "median_ms": 5126.5,
+          "p95_ms": 82720.7,
+          "repeated_median_ms": 4931.2,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "blockstar",
+              "seed": 42,
+              "status": "solved",
+              "turn": 14,
+              "distance_moved": 20,
+              "source_case": "fixture-replay-five-blocks",
+              "ordered_complete": 5,
+              "score": 5
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal BlockStar slide by this exact lexicographic priority: first maximize ordered_complete (the consecutive target pieces already placed from the start of target_order); then minimize locked_disturbed (pieces of the currently completed prefix displaced by this slide); then minimize active_blocked_cells (other blocks' cells in the better of the active piece's vertical-then-horizontal and horizontal-then-vertical target corridors); then minimize active_distance (anchor Manhattan distance of the first unfinished target piece); then minimize total_distance (sum of all pieces' anchor Manhattan distances); then minimize slide_distance. These metrics are measured AFTER the slide. Any remaining exact tie is acceptable. This is a one-step progress heuristic, not globally optimal puzzle search.",
+          "original_trials": 2,
+          "original_valid": 2,
+          "original_agreement_pct": 0.0,
+          "original_median_ms": 82720.7,
+          "original_note": "One original 20×18 board in two orders; timing uses the first order. Remaining seven boards and capped replay are smaller fixtures. No full original puzzle solve by these models is claimed."
+        }
+      }
+    }
+  ]
+}

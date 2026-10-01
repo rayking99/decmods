@@ -1,0 +1,10 @@
+.DS_Store
+__pycache__/
+*.pyc
+arcade/results.json.tmp
+arcade/results.json
+arcade/updated/results.json
+arcade/updated/*.tmp
+arcade/summary.json.tmp
+arcade/logs/
+arcade/runtime/

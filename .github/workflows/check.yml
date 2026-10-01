@@ -1,0 +1,30 @@
+name: Validate Decision Lab
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Game physics and decision API contracts
+        run: python -m unittest discover -s arcade -v
+      - name: Browser game rules
+        run: node --test docs/assets/game-engines.test.mjs
+      - name: Tetris physics and API contracts
+        run: python -m unittest discover -s tetris -v
+      - name: Reconstruct new recorded model evidence
+        run: python arcade/verify.py
+      - name: Reconstruct updated BlockStar probes
+        run: python arcade/verify_update.py
