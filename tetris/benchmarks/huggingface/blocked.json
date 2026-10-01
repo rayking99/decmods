@@ -1,0 +1,7 @@
+[
+  {
+    "model": "julia",
+    "resolved": true,
+    "initial_error": "Native packed batch stayed on CPU; explicit MPS batch placement adapter added."
+  }
+]

@@ -1,0 +1,201 @@
+{
+  "_id": "6ab3f06a4d047e01cce9e3c8",
+  "id": "SupersonicLabs/Julia-1",
+  "private": false,
+  "pipeline_tag": "text-classification",
+  "library_name": "pytorch",
+  "tags": [
+    "pytorch",
+    "safetensors",
+    "decision-model",
+    "text-classification",
+    "multilingual",
+    "routing",
+    "base_model:jhu-clsp/mmBERT-small",
+    "base_model:finetune:jhu-clsp/mmBERT-small",
+    "license:apache-2.0",
+    "region:us"
+  ],
+  "downloads": 2201,
+  "likes": 319,
+  "modelId": "SupersonicLabs/Julia-1",
+  "author": "SupersonicLabs",
+  "sha": "a85b127321d580d65176c89ced8273f305745d85",
+  "lastModified": "2026-09-26T22:03:07.000Z",
+  "gated": false,
+  "disabled": false,
+  "widgetData": [
+    {
+      "text": "I like you. I love you"
+    }
+  ],
+  "model-index": null,
+  "config": {},
+  "cardData": {
+    "license": "apache-2.0",
+    "base_model": "jhu-clsp/mmBERT-small",
+    "library_name": "pytorch",
+    "tags": [
+      "decision-model",
+      "text-classification",
+      "multilingual",
+      "routing"
+    ]
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes"
+    },
+    {
+      "rfilename": ".gitignore"
+    },
+    {
+      "rfilename": "README.md"
+    },
+    {
+      "rfilename": "assets/julia-banner.png"
+    },
+    {
+      "rfilename": "assets/supersonic-labs-dark.svg"
+    },
+    {
+      "rfilename": "assets/supersonic-labs-light.svg"
+    },
+    {
+      "rfilename": "config.json"
+    },
+    {
+      "rfilename": "encoder/config.json"
+    },
+    {
+      "rfilename": "inference-policy.json"
+    },
+    {
+      "rfilename": "julia/__init__.py"
+    },
+    {
+      "rfilename": "julia/cuda.py"
+    },
+    {
+      "rfilename": "julia/data.py"
+    },
+    {
+      "rfilename": "julia/inference.py"
+    },
+    {
+      "rfilename": "julia/model.py"
+    },
+    {
+      "rfilename": "julia/probabilities.py"
+    },
+    {
+      "rfilename": "julia/router/.gitignore"
+    },
+    {
+      "rfilename": "julia/router/README.md"
+    },
+    {
+      "rfilename": "julia/router/__init__.py"
+    },
+    {
+      "rfilename": "julia/router/build.py"
+    },
+    {
+      "rfilename": "julia/router/encoder.py"
+    },
+    {
+      "rfilename": "julia/router/engine.py"
+    },
+    {
+      "rfilename": "julia/router/native.py"
+    },
+    {
+      "rfilename": "julia/router/native/LAWS.bend"
+    },
+    {
+      "rfilename": "julia/router/native/PROOF.bend"
+    },
+    {
+      "rfilename": "julia/router/native/bridge.c"
+    },
+    {
+      "rfilename": "julia/router/native/router.bend"
+    },
+    {
+      "rfilename": "julia/router/router.py"
+    },
+    {
+      "rfilename": "julia/router/specialize.py"
+    },
+    {
+      "rfilename": "julia/router/tests/synthetic.py"
+    },
+    {
+      "rfilename": "julia/router/tests/test_engine.py"
+    },
+    {
+      "rfilename": "julia/router/tests/test_router.py"
+    },
+    {
+      "rfilename": "julia/router/transformer.py"
+    },
+    {
+      "rfilename": "julia/typed.py"
+    },
+    {
+      "rfilename": "julia_config.json"
+    },
+    {
+      "rfilename": "metrics/accuracy-20260924.json"
+    },
+    {
+      "rfilename": "metrics/context-8k-smoke.json"
+    },
+    {
+      "rfilename": "metrics/typed-cpu-20260926.json"
+    },
+    {
+      "rfilename": "metrics/validation.json"
+    },
+    {
+      "rfilename": "model.safetensors"
+    },
+    {
+      "rfilename": "provenance.json"
+    },
+    {
+      "rfilename": "pyproject.toml"
+    },
+    {
+      "rfilename": "scripts/reproduce_typed.py"
+    },
+    {
+      "rfilename": "tests/test_context.py"
+    },
+    {
+      "rfilename": "tests/test_typed_api.py"
+    },
+    {
+      "rfilename": "tokenizer/tokenizer.json"
+    },
+    {
+      "rfilename": "tokenizer/tokenizer_config.json"
+    }
+  ],
+  "spaces": [
+    "multimodalart/jev-decision-index",
+    "embedl/hfviewer",
+    "SupersonicLabs/julia-1-decision-demo",
+    "shreyask/open-jev-julia-demo",
+    "shreyask/open-jev-demo",
+    "uulonger/jev-decision-index"
+  ],
+  "createdAt": "2026-09-23T15:29:46.000Z",
+  "safetensors": {
+    "parameters": {
+      "F32": 144292870
+    },
+    "total": 144292870
+  },
+  "usedStorage": 612518036
+}

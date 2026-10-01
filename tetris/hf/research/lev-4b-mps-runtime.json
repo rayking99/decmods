@@ -1,0 +1,15 @@
+{
+  "models": [
+    {
+      "device": "mps:0",
+      "dtype": "bfloat16",
+      "backend": "native Lev decision engine / PyTorch with MPS placement adapter",
+      "note": "Author loader targets CUDA/CPU; adapter moves unchanged model/head to MPS. No CPU fallback.",
+      "model": "lev:4b-mps",
+      "torch": "2.14.1",
+      "transformers": "5.18.0"
+    }
+  ],
+  "repo": "interfaze-ai/lev",
+  "checkpoint": "f8ef71157ec06a7d3b6435bc0756f9d735c33748"
+}

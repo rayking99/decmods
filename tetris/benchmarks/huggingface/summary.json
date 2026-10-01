@@ -1,0 +1,1558 @@
+{
+  "version": 2,
+  "started": "2026-10-01T05:05:50.480716+00:00",
+  "hardware": "Apple M3 Max, 128 GB unified memory",
+  "ollama": "0.35.0",
+  "suite_cases": 32,
+  "orders": 2,
+  "game_seeds": [
+    42,
+    123
+  ],
+  "game_piece_limit": 40,
+  "suite_sha256": "cffc95a8bd0eb9738ceb119237a451c4bf53c3079e8dde36ce1aa57ac936132c",
+  "policy": "Choose the legal Tetris landing by this exact priority rule: first minimize holes; among ties maximize lines cleared; among ties minimize peak height; then minimize total height; then minimize roughness. Any remaining tie is acceptable. Compare option outcomes AFTER row clearing. This rule is the evaluation target.",
+  "description_encoding": "compact-v1",
+  "method": "Same 32 frozen boards and deterministic option-order permutations per model. Agreement is with a supplied one-step lexicographic policy, accepting all ties; not optimal Tetris accuracy. Serialized inference, loaded-model trials after warmup. Identical seeds for separate games; outcomes may diverge. No animation delays. Prompt-cache effects are possible. Group tournament above 26 choices. Native model prompt layouts and precisions differ; same complete state, instructions, options and order at the API boundary. Lossless input required. Calibration/confidence is not compared.",
+  "scope": [
+    "laya:en-mps",
+    "kev-latest",
+    "julia-1:mps",
+    "winnow:e4b",
+    "kev:4b-mlx",
+    "laya:multilingual-mps",
+    "clm:8b-mps",
+    "lev:4b-mps"
+  ],
+  "baseline_path": "../results.json",
+  "status": "complete",
+  "active": null,
+  "updated": "2026-10-01T05:59:03.003711+00:00",
+  "models": [
+    {
+      "name": "laya:en-mps",
+      "label": "Laya English \u00b7 MPS",
+      "metadata": {
+        "models": [
+          {
+            "device": "mps",
+            "dtype": "torch.float32",
+            "backend": "native Laya / PyTorch",
+            "max_len": 8192,
+            "head_max_len": 2048,
+            "note": "Extended lossless context; English checkpoint trained with a 512-token default. Native runtime clamps out-of-range shipped choice calibration temperatures.",
+            "model": "laya:en-mps",
+            "torch": "2.14.1",
+            "transformers": "5.18.0"
+          }
+        ],
+        "checkpoint": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+        "repo": "convaiinnovations/laya",
+        "native_source": "6d942c92081fbc139e736bbd9ac0023223c29b7f"
+      },
+      "status": "complete",
+      "summary": {
+        "trials": 64,
+        "valid": 64,
+        "errors": 0,
+        "agreement_pct": 3.1,
+        "nondominated_pct": 14.1,
+        "mean_placement_ms": 169.1,
+        "median_placement_ms": 144.8,
+        "p95_placement_ms": 252.5,
+        "median_call_ms": 94.8,
+        "api_calls": 120,
+        "max_input_tokens": 843,
+        "games": [
+          {
+            "seed": 42,
+            "pieces": 24,
+            "lines": 0,
+            "score": 0,
+            "status": "game_over",
+            "holes": 77,
+            "max_height": 20
+          },
+          {
+            "seed": 123,
+            "pieces": 25,
+            "lines": 0,
+            "score": 0,
+            "status": "game_over",
+            "holes": 90,
+            "max_height": 20
+          }
+        ],
+        "total_lines": 0,
+        "total_pieces": 49
+      }
+    },
+    {
+      "name": "kev-latest",
+      "label": "Kev 4B \u00b7 MPS BF16",
+      "metadata": {
+        "models": [
+          {
+            "name": "kev-latest",
+            "description": "Kev pointer head on Qwen/Qwen3.5-4B-Base, serving /Users/jso/code/documentation/tetris/hf/models/kev at temperature 2.41",
+            "release_date": "2026-10-01",
+            "run": "/Users/jso/code/documentation/tetris/hf/models/kev",
+            "base": "Qwen/Qwen3.5-4B-Base",
+            "lora": 16,
+            "device": "mps",
+            "backend": "torch",
+            "dtype": "bfloat16",
+            "temperature": 2.406050072164233,
+            "max_state_tokens": 65536,
+            "truncate_states": false,
+            "cuda_graphs": null,
+            "prefix_cache": {
+              "size": 4,
+              "min_state_tokens": 0,
+              "max_tokens": 65536,
+              "hits": 0,
+              "misses": 0,
+              "cached_states": 0,
+              "oom_retries": 0
+            },
+            "batches": {
+              "count": 0,
+              "requests": 0,
+              "queued": 0
+            }
+          },
+          {
+            "name": "jev-latest",
+            "description": "Kev pointer head on Qwen/Qwen3.5-4B-Base, serving /Users/jso/code/documentation/tetris/hf/models/kev at temperature 2.41",
+            "release_date": "2026-10-01",
+            "run": "/Users/jso/code/documentation/tetris/hf/models/kev",
+            "base": "Qwen/Qwen3.5-4B-Base",
+            "lora": 16,
+            "device": "mps",
+            "backend": "torch",
+            "dtype": "bfloat16",
+            "temperature": 2.406050072164233,
+            "max_state_tokens": 65536,
+            "truncate_states": false,
+            "cuda_graphs": null,
+            "prefix_cache": {
+              "size": 4,
+              "min_state_tokens": 0,
+              "max_tokens": 65536,
+              "hits": 0,
+              "misses": 0,
+              "cached_states": 0,
+              "oom_retries": 0
+            },
+            "batches": {
+              "count": 0,
+              "requests": 0,
+              "queued": 0
+            }
+          }
+        ],
+        "repo": "jaredpalmer/kev-4b",
+        "checkpoint": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+        "native_source": "90512f1c517d977741f2104470a40635408236c9"
+      },
+      "status": "complete",
+      "summary": {
+        "trials": 64,
+        "valid": 64,
+        "errors": 0,
+        "agreement_pct": 45.3,
+        "nondominated_pct": 50.0,
+        "mean_placement_ms": 5070.0,
+        "median_placement_ms": 4647.2,
+        "p95_placement_ms": 11151.8,
+        "median_call_ms": 2731.9,
+        "api_calls": 120,
+        "max_input_tokens": 983,
+        "games": [
+          {
+            "seed": 42,
+            "pieces": 39,
+            "lines": 2,
+            "score": 200,
+            "status": "game_over",
+            "holes": 46,
+            "max_height": 20
+          },
+          {
+            "seed": 123,
+            "pieces": 40,
+            "lines": 3,
+            "score": 400,
+            "status": "piece_limit",
+            "holes": 17,
+            "max_height": 20
+          }
+        ],
+        "total_lines": 5,
+        "total_pieces": 79
+      }
+    },
+    {
+      "name": "julia-1:mps",
+      "label": "Julia-1 \u00b7 MPS FP32",
+      "metadata": {
+        "models": [
+          {
+            "device": "mps",
+            "dtype": "float32",
+            "backend": "native Julia / PyTorch with MPS batch placement adapter",
+            "max_len": 8192,
+            "head_max_len": 2048,
+            "model": "julia-1:mps",
+            "torch": "2.14.1",
+            "transformers": "5.0.0"
+          }
+        ],
+        "repo": "SupersonicLabs/Julia-1",
+        "checkpoint": "a85b127321d580d65176c89ced8273f305745d85"
+      },
+      "status": "complete",
+      "summary": {
+        "trials": 64,
+        "valid": 64,
+        "errors": 0,
+        "agreement_pct": 7.8,
+        "nondominated_pct": 15.6,
+        "mean_placement_ms": 74.8,
+        "median_placement_ms": 48.2,
+        "p95_placement_ms": 137.4,
+        "median_call_ms": 32.6,
+        "api_calls": 120,
+        "max_input_tokens": 830,
+        "games": [
+          {
+            "seed": 42,
+            "pieces": 29,
+            "lines": 0,
+            "score": 0,
+            "status": "game_over",
+            "holes": 65,
+            "max_height": 20
+          },
+          {
+            "seed": 123,
+            "pieces": 23,
+            "lines": 0,
+            "score": 0,
+            "status": "game_over",
+            "holes": 91,
+            "max_height": 20
+          }
+        ],
+        "total_lines": 0,
+        "total_pieces": 52
+      }
+    },
+    {
+      "name": "winnow:e4b",
+      "label": "Winnow E4B \u00b7 Metal Q8",
+      "metadata": {
+        "models": [
+          {
+            "name": "winnow:e4b",
+            "model": "winnow:e4b",
+            "size": 8005451502,
+            "digest": "dd4bf88aa50bebb02e7a26fbebed14682befd037e3e89789ee22b9793f82d226",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "winnow",
+              "families": [
+                "winnow"
+              ],
+              "parameter_size": "7.5B",
+              "quantization_level": "Q8_0"
+            },
+            "expires_at": "2026-10-01T05:26:02.880235417Z",
+            "size_vram": 8005451502,
+            "context_length": 8192,
+            "device": "metal"
+          }
+        ],
+        "repo": "EldanRing/Winnow-E4B",
+        "checkpoint": "1b257e8fa80b270a62338362a8b35e37f7890273",
+        "ollaya": "0.8.0",
+        "manifest": {
+          "schemaVersion": 2,
+          "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+          "config": {
+            "mediaType": "application/vnd.ollaya.config.v1+json",
+            "digest": "sha256:274b51337582ffed72cbc67ac9508949b4c7da8bf3d9f6e673b2be864ac3dbb3",
+            "size": 510,
+            "urls": [
+              "https://ollaya.dev/blobs/sha256-274b51337582ffed72cbc67ac9508949b4c7da8bf3d9f6e673b2be864ac3dbb3"
+            ]
+          },
+          "layers": [
+            {
+              "mediaType": "application/vnd.ollaya.weights.gguf",
+              "digest": "sha256:840e3f50e5a9c218727f44e121d1b37cc9e2c3b318c8eb422ba6ef2e27b618a2",
+              "size": 8005437472,
+              "urls": [
+                "https://huggingface.co/EldanRing/Winnow-E4B/resolve/734302fe5fbfeb3f21a7ece62653c9539be4aaf3/gguf/Winnow-E4B-Q8_0.gguf"
+              ],
+              "annotations": {
+                "org.ollaya.quantization": "Q8_0"
+              }
+            },
+            {
+              "mediaType": "application/vnd.ollaya.decision",
+              "digest": "sha256:3b76b10f430adffd51097e0dc97ae676a1f60e8f216a00e6aacb48faf95be5ad",
+              "size": 2058,
+              "urls": [
+                "https://ollaya.dev/blobs/sha256-3b76b10f430adffd51097e0dc97ae676a1f60e8f216a00e6aacb48faf95be5ad"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ollaya.calibration",
+              "digest": "sha256:82007815eb87481ab1f03d337327145c615e0220ba4648e32d95175c36da023c",
+              "size": 258,
+              "urls": [
+                "https://ollaya.dev/blobs/sha256-82007815eb87481ab1f03d337327145c615e0220ba4648e32d95175c36da023c"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ollaya.license",
+              "digest": "sha256:b8186b826818c648764eaae1f08d4006208c078217497425c3df8666a4b4be35",
+              "size": 11204,
+              "urls": [
+                "https://ollaya.dev/blobs/sha256-b8186b826818c648764eaae1f08d4006208c078217497425c3df8666a4b4be35"
+              ]
+            }
+          ]
+        },
+        "loader_probe": {
+          "source": "ollama",
+          "model": "winnow:e4b",
+          "choice": "r0_c9",
+          "latency_ms": 26182.5,
+          "candidate_count": 9,
+          "calls": [
+            {
+              "request": {
+                "model": "winnow:e4b",
+                "state": {
+                  "piece": "O",
+                  "next": "L",
+                  "board_top_to_bottom": [
+                    "..........",
+                    "..........",
+                    "..........",
+                    "..........",
+                    "..........",
+                    "..........",
+                    "..........",
+                    "..........",
+                    "..........",
+                    "..........",
+                    "..........",
+                    "..........",
+                    "..........",
+                    "..........",
+                    "..........",
+                    "..........",
+                    "..........",
+                    "..........",
+                    "..........",
+                    ".........."
+                  ],
+                  "definitions": "holes=empty cells below blocks; peak=max column height; total_height=sum of column heights; roughness=sum of adjacent height differences. All options are legal hard drops. Metrics are after line clears."
+                },
+                "keep_alive": "30m",
+                "questions": {
+                  "placement": {
+                    "type": "choice",
+                    "instructions": "Choose the legal Tetris landing by this exact priority rule: first minimize holes; among ties maximize lines cleared; among ties minimize peak height; then minimize total height; then minimize roughness. Any remaining tie is acceptable. Compare option outcomes AFTER row clearing. This rule is the evaluation target.",
+                    "criteria": {
+                      "r0_c5": "rotation=0, column=5, lines=0, holes=0, peak=2, total_height=4, roughness=4",
+                      "r0_c2": "rotation=0, column=2, lines=0, holes=0, peak=2, total_height=4, roughness=4",
+                      "r0_c9": "rotation=0, column=9, lines=0, holes=0, peak=2, total_height=4, roughness=2",
+                      "r0_c4": "rotation=0, column=4, lines=0, holes=0, peak=2, total_height=4, roughness=4",
+                      "r0_c7": "rotation=0, column=7, lines=0, holes=0, peak=2, total_height=4, roughness=4",
+                      "r0_c6": "rotation=0, column=6, lines=0, holes=0, peak=2, total_height=4, roughness=4",
+                      "r0_c3": "rotation=0, column=3, lines=0, holes=0, peak=2, total_height=4, roughness=4",
+                      "r0_c8": "rotation=0, column=8, lines=0, holes=0, peak=2, total_height=4, roughness=4",
+                      "r0_c1": "rotation=0, column=1, lines=0, holes=0, peak=2, total_height=4, roughness=2"
+                    }
+                  }
+                }
+              },
+              "response": {
+                "model": "winnow:e4b",
+                "answers": {
+                  "placement": {
+                    "type": "choice",
+                    "choice": "r0_c9",
+                    "confidence": 0.5643,
+                    "probabilities": {
+                      "r0_c5": 0.0242,
+                      "r0_c2": 0.0179,
+                      "r0_c9": 0.6127,
+                      "r0_c4": 0.014,
+                      "r0_c7": 0.0091,
+                      "r0_c6": 0.0061,
+                      "r0_c3": 0.0023,
+                      "r0_c8": 0.02,
+                      "r0_c1": 0.2936
+                    }
+                  }
+                },
+                "usage": {
+                  "input_tokens": 593,
+                  "output_tokens": 0
+                },
+                "gateway": {
+                  "native_model": "winnow:e4b",
+                  "native_endpoint": "http://127.0.0.1:11435"
+                }
+              },
+              "latency_ms": 26182.5,
+              "answer": {
+                "type": "choice",
+                "choice": "r0_c9",
+                "confidence": 0.5643,
+                "probabilities": {
+                  "r0_c5": 0.0242,
+                  "r0_c2": 0.0179,
+                  "r0_c9": 0.6127,
+                  "r0_c4": 0.014,
+                  "r0_c7": 0.0091,
+                  "r0_c6": 0.0061,
+                  "r0_c3": 0.0023,
+                  "r0_c8": 0.02,
+                  "r0_c1": 0.2936
+                }
+              },
+              "options": [
+                {
+                  "id": "r0_c5",
+                  "piece": "O",
+                  "rotation": 0,
+                  "x": 4,
+                  "y": 18,
+                  "cells": [
+                    [
+                      4,
+                      18
+                    ],
+                    [
+                      4,
+                      19
+                    ],
+                    [
+                      5,
+                      18
+                    ],
+                    [
+                      5,
+                      19
+                    ]
+                  ],
+                  "cleared": 0,
+                  "metrics": {
+                    "heights": [
+                      0,
+                      0,
+                      0,
+                      0,
+                      2,
+                      2,
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "holes": 0,
+                    "max_height": 2,
+                    "aggregate_height": 4,
+                    "bumpiness": 4
+                  }
+                },
+                {
+                  "id": "r0_c2",
+                  "piece": "O",
+                  "rotation": 0,
+                  "x": 1,
+                  "y": 18,
+                  "cells": [
+                    [
+                      1,
+                      18
+                    ],
+                    [
+                      1,
+                      19
+                    ],
+                    [
+                      2,
+                      18
+                    ],
+                    [
+                      2,
+                      19
+                    ]
+                  ],
+                  "cleared": 0,
+                  "metrics": {
+                    "heights": [
+                      0,
+                      2,
+                      2,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "holes": 0,
+                    "max_height": 2,
+                    "aggregate_height": 4,
+                    "bumpiness": 4
+                  }
+                },
+                {
+                  "id": "r0_c9",
+                  "piece": "O",
+                  "rotation": 0,
+                  "x": 8,
+                  "y": 18,
+                  "cells": [
+                    [
+                      8,
+                      18
+                    ],
+                    [
+                      8,
+                      19
+                    ],
+                    [
+                      9,
+                      18
+                    ],
+                    [
+                      9,
+                      19
+                    ]
+                  ],
+                  "cleared": 0,
+                  "metrics": {
+                    "heights": [
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      2,
+                      2
+                    ],
+                    "holes": 0,
+                    "max_height": 2,
+                    "aggregate_height": 4,
+                    "bumpiness": 2
+                  }
+                },
+                {
+                  "id": "r0_c4",
+                  "piece": "O",
+                  "rotation": 0,
+                  "x": 3,
+                  "y": 18,
+                  "cells": [
+                    [
+                      3,
+                      18
+                    ],
+                    [
+                      3,
+                      19
+                    ],
+                    [
+                      4,
+                      18
+                    ],
+                    [
+                      4,
+                      19
+                    ]
+                  ],
+                  "cleared": 0,
+                  "metrics": {
+                    "heights": [
+                      0,
+                      0,
+                      0,
+                      2,
+                      2,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "holes": 0,
+                    "max_height": 2,
+                    "aggregate_height": 4,
+                    "bumpiness": 4
+                  }
+                },
+                {
+                  "id": "r0_c7",
+                  "piece": "O",
+                  "rotation": 0,
+                  "x": 6,
+                  "y": 18,
+                  "cells": [
+                    [
+                      6,
+                      18
+                    ],
+                    [
+                      6,
+                      19
+                    ],
+                    [
+                      7,
+                      18
+                    ],
+                    [
+                      7,
+                      19
+                    ]
+                  ],
+                  "cleared": 0,
+                  "metrics": {
+                    "heights": [
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      2,
+                      2,
+                      0,
+                      0
+                    ],
+                    "holes": 0,
+                    "max_height": 2,
+                    "aggregate_height": 4,
+                    "bumpiness": 4
+                  }
+                },
+                {
+                  "id": "r0_c6",
+                  "piece": "O",
+                  "rotation": 0,
+                  "x": 5,
+                  "y": 18,
+                  "cells": [
+                    [
+                      5,
+                      18
+                    ],
+                    [
+                      5,
+                      19
+                    ],
+                    [
+                      6,
+                      18
+                    ],
+                    [
+                      6,
+                      19
+                    ]
+                  ],
+                  "cleared": 0,
+                  "metrics": {
+                    "heights": [
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      2,
+                      2,
+                      0,
+                      0,
+                      0
+                    ],
+                    "holes": 0,
+                    "max_height": 2,
+                    "aggregate_height": 4,
+                    "bumpiness": 4
+                  }
+                },
+                {
+                  "id": "r0_c3",
+                  "piece": "O",
+                  "rotation": 0,
+                  "x": 2,
+                  "y": 18,
+                  "cells": [
+                    [
+                      2,
+                      18
+                    ],
+                    [
+                      2,
+                      19
+                    ],
+                    [
+                      3,
+                      18
+                    ],
+                    [
+                      3,
+                      19
+                    ]
+                  ],
+                  "cleared": 0,
+                  "metrics": {
+                    "heights": [
+                      0,
+                      0,
+                      2,
+                      2,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "holes": 0,
+                    "max_height": 2,
+                    "aggregate_height": 4,
+                    "bumpiness": 4
+                  }
+                },
+                {
+                  "id": "r0_c8",
+                  "piece": "O",
+                  "rotation": 0,
+                  "x": 7,
+                  "y": 18,
+                  "cells": [
+                    [
+                      7,
+                      18
+                    ],
+                    [
+                      7,
+                      19
+                    ],
+                    [
+                      8,
+                      18
+                    ],
+                    [
+                      8,
+                      19
+                    ]
+                  ],
+                  "cleared": 0,
+                  "metrics": {
+                    "heights": [
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      2,
+                      2,
+                      0
+                    ],
+                    "holes": 0,
+                    "max_height": 2,
+                    "aggregate_height": 4,
+                    "bumpiness": 4
+                  }
+                },
+                {
+                  "id": "r0_c1",
+                  "piece": "O",
+                  "rotation": 0,
+                  "x": 0,
+                  "y": 18,
+                  "cells": [
+                    [
+                      0,
+                      18
+                    ],
+                    [
+                      0,
+                      19
+                    ],
+                    [
+                      1,
+                      18
+                    ],
+                    [
+                      1,
+                      19
+                    ]
+                  ],
+                  "cleared": 0,
+                  "metrics": {
+                    "heights": [
+                      2,
+                      2,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "holes": 0,
+                    "max_height": 2,
+                    "aggregate_height": 4,
+                    "bumpiness": 2
+                  }
+                }
+              ]
+            }
+          ],
+          "probabilities": {
+            "r0_c5": 0.0242,
+            "r0_c2": 0.0179,
+            "r0_c9": 0.6127,
+            "r0_c4": 0.014,
+            "r0_c7": 0.0091,
+            "r0_c6": 0.0061,
+            "r0_c3": 0.0023,
+            "r0_c8": 0.02,
+            "r0_c1": 0.2936
+          },
+          "concentration": 0.5643,
+          "options": [
+            {
+              "id": "r0_c5",
+              "piece": "O",
+              "rotation": 0,
+              "x": 4,
+              "y": 18,
+              "cells": [
+                [
+                  4,
+                  18
+                ],
+                [
+                  4,
+                  19
+                ],
+                [
+                  5,
+                  18
+                ],
+                [
+                  5,
+                  19
+                ]
+              ],
+              "cleared": 0,
+              "metrics": {
+                "heights": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  2,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "holes": 0,
+                "max_height": 2,
+                "aggregate_height": 4,
+                "bumpiness": 4
+              }
+            },
+            {
+              "id": "r0_c2",
+              "piece": "O",
+              "rotation": 0,
+              "x": 1,
+              "y": 18,
+              "cells": [
+                [
+                  1,
+                  18
+                ],
+                [
+                  1,
+                  19
+                ],
+                [
+                  2,
+                  18
+                ],
+                [
+                  2,
+                  19
+                ]
+              ],
+              "cleared": 0,
+              "metrics": {
+                "heights": [
+                  0,
+                  2,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "holes": 0,
+                "max_height": 2,
+                "aggregate_height": 4,
+                "bumpiness": 4
+              }
+            },
+            {
+              "id": "r0_c9",
+              "piece": "O",
+              "rotation": 0,
+              "x": 8,
+              "y": 18,
+              "cells": [
+                [
+                  8,
+                  18
+                ],
+                [
+                  8,
+                  19
+                ],
+                [
+                  9,
+                  18
+                ],
+                [
+                  9,
+                  19
+                ]
+              ],
+              "cleared": 0,
+              "metrics": {
+                "heights": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  2,
+                  2
+                ],
+                "holes": 0,
+                "max_height": 2,
+                "aggregate_height": 4,
+                "bumpiness": 2
+              }
+            },
+            {
+              "id": "r0_c4",
+              "piece": "O",
+              "rotation": 0,
+              "x": 3,
+              "y": 18,
+              "cells": [
+                [
+                  3,
+                  18
+                ],
+                [
+                  3,
+                  19
+                ],
+                [
+                  4,
+                  18
+                ],
+                [
+                  4,
+                  19
+                ]
+              ],
+              "cleared": 0,
+              "metrics": {
+                "heights": [
+                  0,
+                  0,
+                  0,
+                  2,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "holes": 0,
+                "max_height": 2,
+                "aggregate_height": 4,
+                "bumpiness": 4
+              }
+            },
+            {
+              "id": "r0_c7",
+              "piece": "O",
+              "rotation": 0,
+              "x": 6,
+              "y": 18,
+              "cells": [
+                [
+                  6,
+                  18
+                ],
+                [
+                  6,
+                  19
+                ],
+                [
+                  7,
+                  18
+                ],
+                [
+                  7,
+                  19
+                ]
+              ],
+              "cleared": 0,
+              "metrics": {
+                "heights": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  2,
+                  2,
+                  0,
+                  0
+                ],
+                "holes": 0,
+                "max_height": 2,
+                "aggregate_height": 4,
+                "bumpiness": 4
+              }
+            },
+            {
+              "id": "r0_c6",
+              "piece": "O",
+              "rotation": 0,
+              "x": 5,
+              "y": 18,
+              "cells": [
+                [
+                  5,
+                  18
+                ],
+                [
+                  5,
+                  19
+                ],
+                [
+                  6,
+                  18
+                ],
+                [
+                  6,
+                  19
+                ]
+              ],
+              "cleared": 0,
+              "metrics": {
+                "heights": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  2,
+                  2,
+                  0,
+                  0,
+                  0
+                ],
+                "holes": 0,
+                "max_height": 2,
+                "aggregate_height": 4,
+                "bumpiness": 4
+              }
+            },
+            {
+              "id": "r0_c3",
+              "piece": "O",
+              "rotation": 0,
+              "x": 2,
+              "y": 18,
+              "cells": [
+                [
+                  2,
+                  18
+                ],
+                [
+                  2,
+                  19
+                ],
+                [
+                  3,
+                  18
+                ],
+                [
+                  3,
+                  19
+                ]
+              ],
+              "cleared": 0,
+              "metrics": {
+                "heights": [
+                  0,
+                  0,
+                  2,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "holes": 0,
+                "max_height": 2,
+                "aggregate_height": 4,
+                "bumpiness": 4
+              }
+            },
+            {
+              "id": "r0_c8",
+              "piece": "O",
+              "rotation": 0,
+              "x": 7,
+              "y": 18,
+              "cells": [
+                [
+                  7,
+                  18
+                ],
+                [
+                  7,
+                  19
+                ],
+                [
+                  8,
+                  18
+                ],
+                [
+                  8,
+                  19
+                ]
+              ],
+              "cleared": 0,
+              "metrics": {
+                "heights": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  2,
+                  2,
+                  0
+                ],
+                "holes": 0,
+                "max_height": 2,
+                "aggregate_height": 4,
+                "bumpiness": 4
+              }
+            },
+            {
+              "id": "r0_c1",
+              "piece": "O",
+              "rotation": 0,
+              "x": 0,
+              "y": 18,
+              "cells": [
+                [
+                  0,
+                  18
+                ],
+                [
+                  0,
+                  19
+                ],
+                [
+                  1,
+                  18
+                ],
+                [
+                  1,
+                  19
+                ]
+              ],
+              "cleared": 0,
+              "metrics": {
+                "heights": [
+                  2,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "holes": 0,
+                "max_height": 2,
+                "aggregate_height": 4,
+                "bumpiness": 2
+              }
+            }
+          ]
+        }
+      },
+      "status": "complete",
+      "summary": {
+        "trials": 64,
+        "valid": 64,
+        "errors": 0,
+        "agreement_pct": 62.5,
+        "nondominated_pct": 73.4,
+        "mean_placement_ms": 1738.9,
+        "median_placement_ms": 1331.3,
+        "p95_placement_ms": 2891.3,
+        "median_call_ms": 1049.4,
+        "api_calls": 120,
+        "max_input_tokens": 1081,
+        "games": [
+          {
+            "seed": 42,
+            "pieces": 40,
+            "lines": 14,
+            "score": 1500,
+            "status": "piece_limit",
+            "holes": 0,
+            "max_height": 3
+          },
+          {
+            "seed": 123,
+            "pieces": 40,
+            "lines": 12,
+            "score": 1300,
+            "status": "piece_limit",
+            "holes": 2,
+            "max_height": 6
+          }
+        ],
+        "total_lines": 26,
+        "total_pieces": 80
+      }
+    },
+    {
+      "name": "kev:4b-mlx",
+      "label": "Kev 4B \u00b7 MLX BF16",
+      "metadata": {
+        "models": [
+          {
+            "name": "kev-latest",
+            "description": "Kev pointer head on Qwen/Qwen3.5-4B-Base, serving /Users/jso/code/documentation/tetris/hf/models/kev at temperature 2.41",
+            "release_date": "2026-10-01",
+            "run": "/Users/jso/code/documentation/tetris/hf/models/kev",
+            "base": "Qwen/Qwen3.5-4B-Base",
+            "lora": 16,
+            "device": "mps",
+            "backend": "mlx",
+            "dtype": "bfloat16",
+            "temperature": 2.406050072164233,
+            "max_state_tokens": 65536,
+            "truncate_states": false,
+            "cuda_graphs": null,
+            "prefix_cache": {
+              "size": 4,
+              "min_state_tokens": 0,
+              "max_tokens": 65536,
+              "hits": 0,
+              "misses": 0,
+              "cached_states": 0,
+              "oom_retries": 0
+            },
+            "batches": {
+              "count": 0,
+              "requests": 0,
+              "queued": 0
+            }
+          },
+          {
+            "name": "jev-latest",
+            "description": "Kev pointer head on Qwen/Qwen3.5-4B-Base, serving /Users/jso/code/documentation/tetris/hf/models/kev at temperature 2.41",
+            "release_date": "2026-10-01",
+            "run": "/Users/jso/code/documentation/tetris/hf/models/kev",
+            "base": "Qwen/Qwen3.5-4B-Base",
+            "lora": 16,
+            "device": "mps",
+            "backend": "mlx",
+            "dtype": "bfloat16",
+            "temperature": 2.406050072164233,
+            "max_state_tokens": 65536,
+            "truncate_states": false,
+            "cuda_graphs": null,
+            "prefix_cache": {
+              "size": 4,
+              "min_state_tokens": 0,
+              "max_tokens": 65536,
+              "hits": 0,
+              "misses": 0,
+              "cached_states": 0,
+              "oom_retries": 0
+            },
+            "batches": {
+              "count": 0,
+              "requests": 0,
+              "queued": 0
+            }
+          }
+        ],
+        "repo": "jaredpalmer/kev-4b",
+        "checkpoint": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+        "native_source": "90512f1c517d977741f2104470a40635408236c9"
+      },
+      "status": "complete",
+      "summary": {
+        "trials": 64,
+        "valid": 64,
+        "errors": 0,
+        "agreement_pct": 46.9,
+        "nondominated_pct": 51.6,
+        "mean_placement_ms": 1645.1,
+        "median_placement_ms": 1596.2,
+        "p95_placement_ms": 2966.0,
+        "median_call_ms": 938.2,
+        "api_calls": 120,
+        "max_input_tokens": 983,
+        "games": [
+          {
+            "seed": 42,
+            "pieces": 40,
+            "lines": 4,
+            "score": 500,
+            "status": "piece_limit",
+            "holes": 14,
+            "max_height": 18
+          },
+          {
+            "seed": 123,
+            "pieces": 40,
+            "lines": 3,
+            "score": 400,
+            "status": "piece_limit",
+            "holes": 17,
+            "max_height": 20
+          }
+        ],
+        "total_lines": 7,
+        "total_pieces": 80
+      }
+    },
+    {
+      "name": "laya:multilingual-mps",
+      "label": "Laya multilingual \u00b7 MPS",
+      "metadata": {
+        "models": [
+          {
+            "device": "mps",
+            "dtype": "torch.float32",
+            "backend": "native Laya / PyTorch",
+            "max_len": 8192,
+            "head_max_len": 2048,
+            "note": "Native multilingual checkpoint supports extended 8192-token context. Lossless inputs.",
+            "model": "laya:multilingual-mps",
+            "torch": "2.14.1",
+            "transformers": "5.18.0"
+          }
+        ],
+        "repo": "convaiinnovations/laya",
+        "checkpoint": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851"
+      },
+      "status": "complete",
+      "summary": {
+        "trials": 64,
+        "valid": 64,
+        "errors": 0,
+        "agreement_pct": 4.7,
+        "nondominated_pct": 17.2,
+        "mean_placement_ms": 134.5,
+        "median_placement_ms": 112.6,
+        "p95_placement_ms": 285.1,
+        "median_call_ms": 60.5,
+        "api_calls": 120,
+        "max_input_tokens": 959,
+        "games": [
+          {
+            "seed": 42,
+            "pieces": 29,
+            "lines": 0,
+            "score": 0,
+            "status": "game_over",
+            "holes": 77,
+            "max_height": 20
+          },
+          {
+            "seed": 123,
+            "pieces": 23,
+            "lines": 0,
+            "score": 0,
+            "status": "game_over",
+            "holes": 82,
+            "max_height": 20
+          }
+        ],
+        "total_lines": 0,
+        "total_pieces": 52
+      }
+    },
+    {
+      "name": "clm:8b-mps",
+      "label": "CLM 8B \u00b7 MPS BF16",
+      "metadata": {
+        "models": [
+          {
+            "device": "mps:0",
+            "dtype": "bfloat16 encoder / float32 native heads",
+            "backend": "HF Qwen3 last-token embedding adapter + native CLM heads/schema",
+            "encoder_cache": true,
+            "projection_cache": false,
+            "max_len": 2048,
+            "note": "Cached repeated states/options included in overall median; fresh first-order timing reported separately.",
+            "model": "clm:8b-mps",
+            "torch": "2.14.1",
+            "transformers": "5.18.0"
+          }
+        ],
+        "repo": "Contrastive-LM/CLM-v0.1-8B",
+        "checkpoint": "e939398d4556fcd9400c76fa8c5a513202f42b0a"
+      },
+      "status": "complete",
+      "summary": {
+        "trials": 64,
+        "valid": 64,
+        "errors": 0,
+        "agreement_pct": 15.6,
+        "nondominated_pct": 28.1,
+        "mean_placement_ms": 1325.1,
+        "median_placement_ms": 240.3,
+        "p95_placement_ms": 4113.5,
+        "median_call_ms": 7.0,
+        "api_calls": 120,
+        "max_input_tokens": 821,
+        "games": [
+          {
+            "seed": 42,
+            "pieces": 24,
+            "lines": 0,
+            "score": 0,
+            "status": "game_over",
+            "holes": 100,
+            "max_height": 20
+          },
+          {
+            "seed": 123,
+            "pieces": 22,
+            "lines": 0,
+            "score": 0,
+            "status": "game_over",
+            "holes": 107,
+            "max_height": 20
+          }
+        ],
+        "total_lines": 0,
+        "total_pieces": 46
+      }
+    },
+    {
+      "name": "lev:4b-mps",
+      "label": "Lev 4B \u00b7 MPS BF16",
+      "metadata": {
+        "models": [
+          {
+            "device": "mps:0",
+            "dtype": "bfloat16",
+            "backend": "native Lev decision engine / PyTorch with MPS placement adapter",
+            "note": "Author loader targets CUDA/CPU; adapter moves unchanged model/head to MPS. No CPU fallback.",
+            "model": "lev:4b-mps",
+            "torch": "2.14.1",
+            "transformers": "5.18.0"
+          }
+        ],
+        "repo": "interfaze-ai/lev",
+        "checkpoint": "f8ef71157ec06a7d3b6435bc0756f9d735c33748"
+      },
+      "status": "complete",
+      "summary": {
+        "trials": 64,
+        "valid": 64,
+        "errors": 0,
+        "agreement_pct": 75.0,
+        "nondominated_pct": 87.5,
+        "mean_placement_ms": 9677.8,
+        "median_placement_ms": 6768.6,
+        "p95_placement_ms": 16940.8,
+        "median_call_ms": 5782.9,
+        "api_calls": 120,
+        "max_input_tokens": 1896,
+        "games": [
+          {
+            "seed": 42,
+            "pieces": 40,
+            "lines": 14,
+            "score": 1600,
+            "status": "piece_limit",
+            "holes": 0,
+            "max_height": 5
+          },
+          {
+            "seed": 123,
+            "pieces": 40,
+            "lines": 12,
+            "score": 1300,
+            "status": "piece_limit",
+            "holes": 3,
+            "max_height": 6
+          }
+        ],
+        "total_lines": 26,
+        "total_pieces": 80
+      }
+    }
+  ],
+  "complete_all": true,
+  "unavailable": []
+}

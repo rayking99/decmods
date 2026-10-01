@@ -1,0 +1,77 @@
+{
+  "_id": "6ab18ee0d3c13d51f890f360",
+  "id": "Contrastive-LM/CLM-v0.1-8B",
+  "private": false,
+  "pipeline_tag": "text-ranking",
+  "library_name": "contrastive-lm",
+  "tags": [
+    "contrastive-lm",
+    "clm",
+    "contrastive-learning",
+    "verifier",
+    "reranker",
+    "agents",
+    "text-ranking",
+    "en",
+    "base_model:Qwen/Qwen3-8B",
+    "base_model:finetune:Qwen/Qwen3-8B",
+    "license:apache-2.0",
+    "region:us"
+  ],
+  "downloads": 2392,
+  "likes": 577,
+  "modelId": "Contrastive-LM/CLM-v0.1-8B",
+  "author": "Contrastive-LM",
+  "sha": "e939398d4556fcd9400c76fa8c5a513202f42b0a",
+  "lastModified": "2026-09-24T21:37:19.000Z",
+  "gated": false,
+  "disabled": false,
+  "model-index": null,
+  "config": {
+    "model_type": "clm"
+  },
+  "cardData": {
+    "license": "apache-2.0",
+    "base_model": "Qwen/Qwen3-8B",
+    "pipeline_tag": "text-ranking",
+    "language": [
+      "en"
+    ],
+    "tags": [
+      "contrastive-learning",
+      "verifier",
+      "reranker",
+      "agents",
+      "clm"
+    ],
+    "library_name": "contrastive-lm"
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes"
+    },
+    {
+      "rfilename": "CLM_v0.1-8B.pt"
+    },
+    {
+      "rfilename": "LICENSE"
+    },
+    {
+      "rfilename": "README.md"
+    },
+    {
+      "rfilename": "assets/playground.png"
+    },
+    {
+      "rfilename": "config.json"
+    }
+  ],
+  "spaces": [
+    "multimodalart/jev-decision-index",
+    "mayafree/typed-decision-leaderboard",
+    "uulonger/jev-decision-index",
+    "yeeeeezus/inference"
+  ],
+  "createdAt": "2026-09-21T20:09:04.000Z",
+  "usedStorage": 75816125
+}

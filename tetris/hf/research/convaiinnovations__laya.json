@@ -1,0 +1,247 @@
+{
+  "_id": "6aacc6b34a8e10ba66ac6d0f",
+  "id": "convaiinnovations/laya",
+  "private": false,
+  "pipeline_tag": "text-classification",
+  "library_name": "transformers",
+  "tags": [
+    "transformers",
+    "safetensors",
+    "laya",
+    "system-one",
+    "calibrated-decisions",
+    "rlcd",
+    "classification",
+    "routing",
+    "scoring",
+    "guardrails",
+    "moderation",
+    "reinforcement-learning",
+    "commercial-use",
+    "text-classification",
+    "license:apache-2.0",
+    "endpoints_compatible",
+    "region:us"
+  ],
+  "downloads": 0,
+  "likes": 4699,
+  "modelId": "convaiinnovations/laya",
+  "author": "convaiinnovations",
+  "sha": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+  "lastModified": "2026-09-24T05:39:22.000Z",
+  "gated": false,
+  "disabled": false,
+  "widgetData": [
+    {
+      "text": "I like you. I love you"
+    }
+  ],
+  "model-index": null,
+  "config": {},
+  "cardData": {
+    "license": "apache-2.0",
+    "library_name": "transformers",
+    "pipeline_tag": "text-classification",
+    "tags": [
+      "laya",
+      "system-one",
+      "calibrated-decisions",
+      "rlcd",
+      "classification",
+      "routing",
+      "scoring",
+      "guardrails",
+      "moderation",
+      "reinforcement-learning",
+      "commercial-use"
+    ]
+  },
+  "transformersInfo": {
+    "auto_model": "AutoModel"
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes"
+    },
+    {
+      "rfilename": "README.md"
+    },
+    {
+      "rfilename": "assets/laya_benchmark.png"
+    },
+    {
+      "rfilename": "assets/laya_benchmark_common.png"
+    },
+    {
+      "rfilename": "assets/laya_vs_jev.png"
+    },
+    {
+      "rfilename": "assets/laya_vs_jev_full.png"
+    },
+    {
+      "rfilename": "assets/logo-lockup-dark.png"
+    },
+    {
+      "rfilename": "assets/logo-lockup-dark.svg"
+    },
+    {
+      "rfilename": "assets/logo-lockup.png"
+    },
+    {
+      "rfilename": "assets/logo-lockup.svg"
+    },
+    {
+      "rfilename": "assets/logo-mark-ink.png"
+    },
+    {
+      "rfilename": "assets/logo-mark-ink.svg"
+    },
+    {
+      "rfilename": "assets/logo-mark-mono.svg"
+    },
+    {
+      "rfilename": "assets/logo-mark.png"
+    },
+    {
+      "rfilename": "assets/logo-mark.svg"
+    },
+    {
+      "rfilename": "email_utils.py"
+    },
+    {
+      "rfilename": "encoder/config.json"
+    },
+    {
+      "rfilename": "eval/benchmark_comparison.png"
+    },
+    {
+      "rfilename": "eval/reliability_eval_in.png"
+    },
+    {
+      "rfilename": "eval/reliability_eval_zs.png"
+    },
+    {
+      "rfilename": "eval/results.json"
+    },
+    {
+      "rfilename": "eval/results.md"
+    },
+    {
+      "rfilename": "model.safetensors"
+    },
+    {
+      "rfilename": "multilingual/encoder/config.json"
+    },
+    {
+      "rfilename": "multilingual/model.safetensors"
+    },
+    {
+      "rfilename": "multilingual/rl_agent_config.json"
+    },
+    {
+      "rfilename": "multilingual/tokenizer/tokenizer.json"
+    },
+    {
+      "rfilename": "multilingual/tokenizer/tokenizer_config.json"
+    },
+    {
+      "rfilename": "rl_agent_api.py"
+    },
+    {
+      "rfilename": "rl_agent_config.json"
+    },
+    {
+      "rfilename": "rl_common.py"
+    },
+    {
+      "rfilename": "tokenizer/tokenizer.json"
+    },
+    {
+      "rfilename": "tokenizer/tokenizer_config.json"
+    },
+    {
+      "rfilename": "typed-decisions/encoder/config.json"
+    },
+    {
+      "rfilename": "typed-decisions/model.safetensors"
+    },
+    {
+      "rfilename": "typed-decisions/rl_agent_config.json"
+    },
+    {
+      "rfilename": "typed-decisions/tokenizer/tokenizer.json"
+    },
+    {
+      "rfilename": "typed-decisions/tokenizer/tokenizer_config.json"
+    }
+  ],
+  "spaces": [
+    "multimodalart/jev-decision-index",
+    "convaiinnovations/laya-demo",
+    "embedl/hfviewer",
+    "abhishekbhakat/laya-multilingual-demo",
+    "mayafree/typed-decision-leaderboard",
+    "pollix/stuntd",
+    "afen0768/laya-zerogpu",
+    "hotchpotch/S1MB-leaderboard",
+    "RealFalconsAI/DecisionLab",
+    "EuroEval/euroeval_leaderboard",
+    "yasserrmd/laya-lab",
+    "durgesh-kanzariya/conduit-backend",
+    "AdnanFoisal/pdf-watermark-remover",
+    "BunsDev/laya-calibration-lab",
+    "dkappe/IDU",
+    "aungthuhein-dev/laya-burmese-sib200-demo",
+    "Ethscriptions/rongduan",
+    "henrybit/jev-vs-deepseek",
+    "KGFCode/laya-decision-lab",
+    "2045max/laya-demo-0921",
+    "nile1801/laya-demo",
+    "Mezahir2025/laya-triage",
+    "CallSohail/sway",
+    "nccyber/laya-school-email-triage",
+    "CallSohail/werewolf-village",
+    "KingClancy/jev-decision-index",
+    "Anuragggggggg/laya_api",
+    "Dhanush4510/careerbridge-discover-quiz",
+    "siloh12/laya-demo",
+    "henrybit/laya",
+    "arudradey/genai-vs-nongenai-key-lab",
+    "wuyouxiaobai/laya-demo",
+    "hadeas/laya-decision-playground",
+    "aired/laya-demo",
+    "Parvathy-2025/laya-prompt-guardrail",
+    "nickfury6023/laya-demo",
+    "khushali678/viralpilot-laya",
+    "dungdq1/laya-demo",
+    "AlenJoby/halo-laya",
+    "RomanRG008/gyra-demo",
+    "robynsd/Laya-demo",
+    "antonellof/laya-trader",
+    "danielgx300/KD",
+    "arudradey/universal-math-game",
+    "Prady0909/laya-reasoning-demo",
+    "gen24AI/laya-demo",
+    "souvik-dev07/laya-free-api",
+    "test0709/laya-free-api",
+    "gshreekar/civicpulse",
+    "AbidRayhanPro/LayaAPI",
+    "Slothwolf/laya-demo",
+    "uulonger/laya-demo",
+    "uulonger/jev-decision-index",
+    "medhurgham/laya-demo",
+    "Daankular/FindAJev",
+    "huggyf/laya-demo",
+    "beginbotbot/trick-laya",
+    "sabeh26/laya-game-test"
+  ],
+  "createdAt": "2026-09-18T05:05:55.000Z",
+  "safetensors": {
+    "parameters": {
+      "F32": 3,
+      "F16": 421293827
+    },
+    "total": 421293830
+  },
+  "usedStorage": 2366100536
+}

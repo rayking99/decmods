@@ -1,0 +1,18 @@
+{
+  "models": [
+    {
+      "device": "mps",
+      "dtype": "torch.float32",
+      "backend": "native Laya / PyTorch",
+      "max_len": 8192,
+      "head_max_len": 2048,
+      "note": "Extended lossless context; English checkpoint trained with a 512-token default. Native runtime clamps out-of-range shipped choice calibration temperatures.",
+      "model": "laya:en-mps",
+      "torch": "2.14.1",
+      "transformers": "5.18.0"
+    }
+  ],
+  "checkpoint": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+  "repo": "convaiinnovations/laya",
+  "native_source": "6d942c92081fbc139e736bbd9ac0023223c29b7f"
+}

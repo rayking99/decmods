@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Decision model plays Tetris</title><link rel="stylesheet" href="/style.css"></head>
+<body><main>
+<header><a class="wordmark" href="/">DECISION LAB <span>/ 01</span></a><div class="model-pill"><i id="status-dot"></i><span id="model-label">Local decision model</span></div></header>
+<section class="intro"><div><div class="eyebrow">TETRIS × DECISION MODELS</div><h1>One piece. One decision.</h1><p>A local model chooses where every piece lands. Watch its choices become a game.</p></div><div class="run-id">PLACEMENT MODE<br><span>10 × 20 board · seven-bag pieces</span></div></section>
+<div class="workspace">
+<section class="play-area"><div class="board-top"><span><i class="live-dot"></i> <span id="phase">Ready</span></span><span id="seed-label">SEED 42</span></div>
+<div class="game-layout"><div class="board-wrap"><canvas id="board" width="320" height="640" aria-label="Tetris board"></canvas><div id="overlay" class="overlay" hidden><span id="overlay-title"></span><small id="overlay-detail"></small></div></div>
+<aside class="game-stats"><div class="stat"><label>LINES</label><strong id="lines">0</strong></div><div class="stat"><label>PIECES</label><strong id="pieces">0</strong></div><div class="stat"><label>SCORE</label><strong id="score">0</strong></div><div class="next-piece"><label>UP NEXT</label><canvas id="next" width="100" height="170" aria-label="Next pieces"></canvas></div><div class="board-health"><label>STACK HEALTH</label><p><b id="holes">0</b> holes</p><p><b id="height">0</b> / 20 high</p></div></aside></div>
+<div class="controls"><button id="toggle" class="primary">Let model play <span>↗</span></button><button id="step">One piece</button><button id="reset" title="Restart with the same piece sequence">Restart</button></div>
+<p class="mode-note">Rotate → shift → hard drop. Gravity waits for the model. No hold or wall kicks.</p></section>
+<section class="decision-panel"><div class="panel-heading"><div class="eyebrow">THE LATEST CHOICE</div><span id="source-label">Awaiting model</span></div>
+<div class="choice-title"><span id="chosen-piece" class="piece-badge">—</span><div><h2 id="choice-title">Ready to decide</h2><p id="choice-detail">Every legal landing is offered to the model.</p></div></div>
+<div class="decision-stats"><div><label>LAST DECISION</label><strong id="latency">—</strong></div><div><label>RUN AVERAGE</label><strong id="mean-latency">—</strong></div><div><label>LEGAL LANDINGS</label><strong id="candidate-count">—</strong></div></div>
+<div class="options-heading"><h3>Model preferences</h3><span id="rounds">Selected probability</span></div><div id="options" class="options"><div class="empty">Once play starts, actual probabilities appear here.</div></div>
+<p class="prob-note" id="prob-note">Probabilities express model preference, not the chance that a move is correct.</p>
+<div id="error" class="error" hidden></div>
+<div class="history-heading"><h3>Move history</h3><a id="download" href="/api/replay" download="decision-tetris-replay.json">Save replay ↓</a></div><div id="history" class="history"><div class="empty">Each move leaves a trace.</div></div>
+<details><summary>How this experiment works <span>+</span></summary><p>The engine simulates each legal landing and supplies holes, heights, surface roughness, and rows cleared. The selected model chooses an action through a local <code>/v1/systemone</code> endpoint.</p><p>Above 26 landings, it picks winners from two shuffled groups, then chooses between them. No moves are discarded by a heuristic. Grouping can affect the result.</p><p>The replay includes model metadata, complete API requests and responses, move latency, and the board after every move. These models were trained for decisions and classification; this is an experiment in game decisions.</p></details>
+</section></div><footer><span>LOCAL INFERENCE · REAL MODEL DECISIONS</span><span>Built with Python + uv</span></footer>
+</main><script src="/app.js"></script></body></html>

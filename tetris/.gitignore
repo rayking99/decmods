@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+runs/*.tmp
+hf/.venv/
+hf/vendor/
+hf/models/
+hf/runtime/
+hf/cache/
+hf/julia_runtime/.venv/

@@ -1,0 +1,8 @@
+{
+  "verified": true,
+  "models": 3,
+  "paired_trials": 64,
+  "valid_model_trials": 192,
+  "game_moves_reconstructed": 224,
+  "suite_sha256": "cffc95a8bd0eb9738ceb119237a451c4bf53c3079e8dde36ce1aa57ac936132c"
+}

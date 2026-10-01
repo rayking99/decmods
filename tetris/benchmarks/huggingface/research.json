@@ -1,0 +1,656 @@
+{
+  "captured_at": "2026-10-01T04:57:44.791535+00:00",
+  "top100": [
+    {
+      "rank": 1,
+      "id": "Edge0/Audio8-ASR-Infinite",
+      "task": "automatic-speech-recognition",
+      "trending_score": 1515
+    },
+    {
+      "rank": 2,
+      "id": "convaiinnovations/laya",
+      "task": "text-classification",
+      "trending_score": 1360
+    },
+    {
+      "rank": 3,
+      "id": "XingChen-AGI/TeleOCR",
+      "task": "image-text-to-text",
+      "trending_score": 862
+    },
+    {
+      "rank": 4,
+      "id": "abenzerps/Qwen-Image-2.1-Uncensored-GGUF",
+      "task": "text-to-image",
+      "trending_score": 856
+    },
+    {
+      "rank": 5,
+      "id": "Contrastive-LM/CLM-v0.1-8B",
+      "task": "text-ranking",
+      "trending_score": 532
+    },
+    {
+      "rank": 6,
+      "id": "Qwen/Qwen-Image-2.1",
+      "task": "text-to-image",
+      "trending_score": 525
+    },
+    {
+      "rank": 7,
+      "id": "nvidia/Nemotron-3-Diarization",
+      "task": "voice-activity-detection",
+      "trending_score": 381
+    },
+    {
+      "rank": 8,
+      "id": "Lightricks/LTX-2.5",
+      "task": "image-to-video",
+      "trending_score": 366
+    },
+    {
+      "rank": 9,
+      "id": "Qwen/Qwen3.8-27B",
+      "task": "image-text-to-text",
+      "trending_score": 366
+    },
+    {
+      "rank": 10,
+      "id": "prism-ml/Ternary-Bonsai-2-27B-gguf",
+      "task": "text-generation",
+      "trending_score": 314
+    },
+    {
+      "rank": 11,
+      "id": "SupersonicLabs/Julia-1",
+      "task": "text-classification",
+      "trending_score": 309
+    },
+    {
+      "rank": 12,
+      "id": "Viggle/Qwen-Image-2.1-viggle-turbo",
+      "task": "text-to-image",
+      "trending_score": 303
+    },
+    {
+      "rank": 13,
+      "id": "fastino/GLiNER2.5-Decide",
+      "task": "token-classification",
+      "trending_score": 256
+    },
+    {
+      "rank": 14,
+      "id": "PSRben/VisionHOPE",
+      "task": "image-classification",
+      "trending_score": 246
+    },
+    {
+      "rank": 15,
+      "id": "orcarouter/OrcaSAQ-2-27B",
+      "task": "text-generation",
+      "trending_score": 225
+    },
+    {
+      "rank": 16,
+      "id": "TaichuAI/ZDTaichu5.0-9B",
+      "task": "image-text-to-text",
+      "trending_score": 212
+    },
+    {
+      "rank": 17,
+      "id": "ISTA-DASLab/Qwen3.8-27B-GSQ-RCO-GGUF",
+      "task": "image-text-to-text",
+      "trending_score": 210
+    },
+    {
+      "rank": 18,
+      "id": "Altworld/Hemmingway-1",
+      "task": "text-generation",
+      "trending_score": 198
+    },
+    {
+      "rank": 19,
+      "id": "Comfy-Org/Qwen-Image-2.1",
+      "task": null,
+      "trending_score": 194
+    },
+    {
+      "rank": 20,
+      "id": "akatz-ai/MiniMax-H3-Character-Swap-LoRA",
+      "task": "video-to-video",
+      "trending_score": 186
+    },
+    {
+      "rank": 21,
+      "id": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "task": "image-text-to-text",
+      "trending_score": 179
+    },
+    {
+      "rank": 22,
+      "id": "akhilaaa3/Jev-Omni",
+      "task": "text-classification",
+      "trending_score": 177
+    },
+    {
+      "rank": 23,
+      "id": "XingChen-AGI/Xing4.0-29B-A4B",
+      "task": "text-generation",
+      "trending_score": 172
+    },
+    {
+      "rank": 24,
+      "id": "orcarouter/OrcaSAQ-2-Cyber-27B-Uncensored-GGUF",
+      "task": "text-generation",
+      "trending_score": 171
+    },
+    {
+      "rank": 25,
+      "id": "XiaomiMiMo/MiMo-V2.6-Distill-Qwen-9B",
+      "task": "image-text-to-text",
+      "trending_score": 165
+    },
+    {
+      "rank": 26,
+      "id": "Alissonerdx/BFS-Best-Face-Swap",
+      "task": "image-to-image",
+      "trending_score": 164
+    },
+    {
+      "rank": 27,
+      "id": "inclusionAI/Ming-Image-0.1-Design",
+      "task": "text-to-image",
+      "trending_score": 164
+    },
+    {
+      "rank": 28,
+      "id": "ukisai/Swift-1.5-Qwen3.8-27B-GSQ-RCO-GGUF",
+      "task": "text-generation",
+      "trending_score": 162
+    },
+    {
+      "rank": 29,
+      "id": "XiaomiMiMo/MiMo-V2.6-Pro-RL",
+      "task": "text-generation",
+      "trending_score": 154
+    },
+    {
+      "rank": 30,
+      "id": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-Coder-GGUF",
+      "task": "image-text-to-text",
+      "trending_score": 149
+    },
+    {
+      "rank": 31,
+      "id": "unsloth/Qwen3.8-27B-GGUF",
+      "task": null,
+      "trending_score": 146
+    },
+    {
+      "rank": 32,
+      "id": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
+      "task": "image-text-to-text",
+      "trending_score": 146
+    },
+    {
+      "rank": 33,
+      "id": "unsloth/Qwen-Image-2.1-GGUF",
+      "task": "text-to-image",
+      "trending_score": 146
+    },
+    {
+      "rank": 34,
+      "id": "DavidAU/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF",
+      "task": "image-text-to-text",
+      "trending_score": 143
+    },
+    {
+      "rank": 35,
+      "id": "apple/LensVLM-9B",
+      "task": "image-text-to-text",
+      "trending_score": 143
+    },
+    {
+      "rank": 36,
+      "id": "Qwen/Qwen3.8-Flash-Next",
+      "task": "image-text-to-text",
+      "trending_score": 137
+    },
+    {
+      "rank": 37,
+      "id": "PrunaAI/Pruna-Qwen-Image-2.1",
+      "task": "text-to-image",
+      "trending_score": 127
+    },
+    {
+      "rank": 38,
+      "id": "pyannote/speaker-diarization-community-1",
+      "task": "automatic-speech-recognition",
+      "trending_score": 118
+    },
+    {
+      "rank": 39,
+      "id": "NaiveAI/Naive-N0.5-Flash",
+      "task": "text-generation",
+      "trending_score": 118
+    },
+    {
+      "rank": 40,
+      "id": "ukisai/Swift-1.5-Qwen3.8-27B-GGUF",
+      "task": "image-text-to-text",
+      "trending_score": 117
+    },
+    {
+      "rank": 41,
+      "id": "convaiinnovations/laya-multilingual",
+      "task": "text-classification",
+      "trending_score": 113
+    },
+    {
+      "rank": 42,
+      "id": "pottokao/Qwen-Image-2.1-Text-Encoder-Heretic-GGUF",
+      "task": null,
+      "trending_score": 111
+    },
+    {
+      "rank": 43,
+      "id": "HauhauCS/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF",
+      "task": "image-text-to-text",
+      "trending_score": 108
+    },
+    {
+      "rank": 44,
+      "id": "MiniMaxAI/MiniMax-H3",
+      "task": "image-text-to-video",
+      "trending_score": 106
+    },
+    {
+      "rank": 45,
+      "id": "facebook/sam3",
+      "task": "mask-generation",
+      "trending_score": 101
+    },
+    {
+      "rank": 46,
+      "id": "netease-youdao/Confucius4-R2T2",
+      "task": "automatic-speech-recognition",
+      "trending_score": 101
+    },
+    {
+      "rank": 47,
+      "id": "FermionResearch/Phonon-2",
+      "task": "automatic-speech-recognition",
+      "trending_score": 97
+    },
+    {
+      "rank": 48,
+      "id": "interfaze-ai/lev",
+      "task": "zero-shot-classification",
+      "trending_score": 95
+    },
+    {
+      "rank": 49,
+      "id": "XiaomiMiMo/MiMo-V2.6-Flash-RL",
+      "task": "text-generation",
+      "trending_score": 93
+    },
+    {
+      "rank": 50,
+      "id": "AlexWortega/openjev",
+      "task": "text-classification",
+      "trending_score": 92
+    },
+    {
+      "rank": 51,
+      "id": "lilylilith/QI_2.1_AnyAngle",
+      "task": "image-to-image",
+      "trending_score": 91
+    },
+    {
+      "rank": 52,
+      "id": "zai-org/GLM-5.3",
+      "task": "text-generation",
+      "trending_score": 90
+    },
+    {
+      "rank": 53,
+      "id": "ukisai/Swift-1.5-Qwen3.8-27b",
+      "task": "image-text-to-text",
+      "trending_score": 89
+    },
+    {
+      "rank": 54,
+      "id": "pablodawson/MiniMax-H3-360-Orbit-LoRA",
+      "task": "image-text-to-video",
+      "trending_score": 85
+    },
+    {
+      "rank": 55,
+      "id": "huihui-ai/Huihui-Qwen3.8-27B-abliterated-GGUF",
+      "task": "image-text-to-text",
+      "trending_score": 81
+    },
+    {
+      "rank": 56,
+      "id": "Hikari07jp/Ternary-Bonsai-2-27B-Abliterated-GGUF",
+      "task": "text-generation",
+      "trending_score": 81
+    },
+    {
+      "rank": 57,
+      "id": "well9472/Nanosaur2-670M",
+      "task": null,
+      "trending_score": 81
+    },
+    {
+      "rank": 58,
+      "id": "Comfy-Org/MiniMax-H3",
+      "task": null,
+      "trending_score": 80
+    },
+    {
+      "rank": 59,
+      "id": "DavidAU/Qwen3.5-9B-The-Defiant-Fable-Uncensored-Heretic-NEO-IMATRIX-MAX-MTP-GGUF",
+      "task": "image-text-to-text",
+      "trending_score": 78
+    },
+    {
+      "rank": 60,
+      "id": "bartowski/MiMo-V2.6-Distill-Qwen-9B-GGUF",
+      "task": "image-text-to-text",
+      "trending_score": 77
+    },
+    {
+      "rank": 61,
+      "id": "madebyollin/texture-fix-vae-for-qwen-image-2.1",
+      "task": null,
+      "trending_score": 77
+    },
+    {
+      "rank": 62,
+      "id": "DavidAU/LFM2.5-2.6B-Qwen3.8-Turbo-Brilliance-Power-X12-NEO-MAX-GGUF",
+      "task": "text-generation",
+      "trending_score": 73
+    },
+    {
+      "rank": 63,
+      "id": "JonathanColetti/Qwen3.8-27B-Uncensored-GGUF",
+      "task": "text-generation",
+      "trending_score": 72
+    },
+    {
+      "rank": 64,
+      "id": "hexgrad/Kokoro-82M",
+      "task": "text-to-speech",
+      "trending_score": 71
+    },
+    {
+      "rank": 65,
+      "id": "ukisai/Swift-1.5-Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
+      "task": "image-text-to-text",
+      "trending_score": 70
+    },
+    {
+      "rank": 66,
+      "id": "zai-org/GLM-5.3-Flash",
+      "task": "image-text-to-text",
+      "trending_score": 69
+    },
+    {
+      "rank": 67,
+      "id": "internlm/Intern-Decision-4B",
+      "task": "image-text-to-text",
+      "trending_score": 69
+    },
+    {
+      "rank": 68,
+      "id": "nvidia/Kumo-Tabular",
+      "task": null,
+      "trending_score": 67
+    },
+    {
+      "rank": 69,
+      "id": "IQuestLab/IQuest-Q1",
+      "task": "text-generation",
+      "trending_score": 66
+    },
+    {
+      "rank": 70,
+      "id": "Alissonerdx/Minimax-H3-ComfyUI",
+      "task": null,
+      "trending_score": 65
+    },
+    {
+      "rank": 71,
+      "id": "black-forest-labs/flux-3-action-base",
+      "task": "robotics",
+      "trending_score": 62
+    },
+    {
+      "rank": 72,
+      "id": "black-forest-labs/FLUX.1-dev",
+      "task": "text-to-image",
+      "trending_score": 61
+    },
+    {
+      "rank": 73,
+      "id": "orcarouter/Qwen3.8-27B-Uncensored-GGUF",
+      "task": "image-text-to-text",
+      "trending_score": 61
+    },
+    {
+      "rank": 74,
+      "id": "black-forest-labs/FLUX.2-klein-base-9b-fp8",
+      "task": "image-to-image",
+      "trending_score": 59
+    },
+    {
+      "rank": 75,
+      "id": "froggeric/Qwen-Fixed-Chat-Templates",
+      "task": null,
+      "trending_score": 59
+    },
+    {
+      "rank": 76,
+      "id": "WarmBloodAban/Minimax-h3_Singularity",
+      "task": "image-to-video",
+      "trending_score": 58
+    },
+    {
+      "rank": 77,
+      "id": "m-a-p/YuE2-3B",
+      "task": "text-to-audio",
+      "trending_score": 58
+    },
+    {
+      "rank": 78,
+      "id": "bottlecapai/ThinkingCap-Qwen3.8-27B",
+      "task": "image-text-to-text",
+      "trending_score": 58
+    },
+    {
+      "rank": 79,
+      "id": "pyannote/speaker-diarization-3.1",
+      "task": "automatic-speech-recognition",
+      "trending_score": 57
+    },
+    {
+      "rank": 80,
+      "id": "yandex/AliceAI-Foundation-80B-A3B-Base",
+      "task": "text-generation",
+      "trending_score": 57
+    },
+    {
+      "rank": 81,
+      "id": "ukisai/Swift1.5-Qwen3.8-Flash-Next",
+      "task": "image-text-to-text",
+      "trending_score": 56
+    },
+    {
+      "rank": 82,
+      "id": "ausboss/Qwen-Image-2.1-Consistency-LoRA",
+      "task": "image-to-image",
+      "trending_score": 56
+    },
+    {
+      "rank": 83,
+      "id": "krea/Krea-2-Raw",
+      "task": "text-to-image",
+      "trending_score": 55
+    },
+    {
+      "rank": 84,
+      "id": "ukisai/Swift-Qwen3.8-27B-GGUF",
+      "task": "image-text-to-text",
+      "trending_score": 55
+    },
+    {
+      "rank": 85,
+      "id": "Aratako/Irodori-TTS-v4-Large",
+      "task": "text-to-speech",
+      "trending_score": 55
+    },
+    {
+      "rank": 86,
+      "id": "google/gemma-4-31B-it",
+      "task": "image-text-to-text",
+      "trending_score": 52
+    },
+    {
+      "rank": 87,
+      "id": "moonshotai/Kimi-K3",
+      "task": "image-text-to-text",
+      "trending_score": 52
+    },
+    {
+      "rank": 88,
+      "id": "meta-llama/Llama-3.1-8B-Instruct",
+      "task": "text-generation",
+      "trending_score": 51
+    },
+    {
+      "rank": 89,
+      "id": "Cactus-Compute/needle3",
+      "task": "text-generation",
+      "trending_score": 51
+    },
+    {
+      "rank": 90,
+      "id": "jaredpalmer/kev-4b",
+      "task": "text-classification",
+      "trending_score": 51
+    },
+    {
+      "rank": 91,
+      "id": "openjev/openjev",
+      "task": "zero-shot-classification",
+      "trending_score": 50
+    },
+    {
+      "rank": 92,
+      "id": "Hcompany/Holo4-27B",
+      "task": "image-text-to-text",
+      "trending_score": 50
+    },
+    {
+      "rank": 93,
+      "id": "facebook/dinov3-vitl16-pretrain-lvd1689m",
+      "task": "image-feature-extraction",
+      "trending_score": 49
+    },
+    {
+      "rank": 94,
+      "id": "incoai/Qwen3.8-27B-Splash",
+      "task": "text-generation",
+      "trending_score": 49
+    },
+    {
+      "rank": 95,
+      "id": "FINAL-Bench/Darwin-180B-RSI",
+      "task": "image-text-to-text",
+      "trending_score": 49
+    },
+    {
+      "rank": 96,
+      "id": "NSFW-API/NSFW_Wan_1.3b",
+      "task": null,
+      "trending_score": 48.1
+    },
+    {
+      "rank": 97,
+      "id": "krea/Krea-2-Turbo",
+      "task": "text-to-image",
+      "trending_score": 48
+    },
+    {
+      "rank": 98,
+      "id": "lukey03/Qwen3.5-9B-abliterated",
+      "task": "text-generation",
+      "trending_score": 47
+    },
+    {
+      "rank": 99,
+      "id": "SupraLabs/Supra2-IMG",
+      "task": "text-to-image",
+      "trending_score": 47
+    },
+    {
+      "rank": 100,
+      "id": "Comfy-Org/Ming-Image",
+      "task": null,
+      "trending_score": 46
+    }
+  ],
+  "requested": [
+    {
+      "label": "Laya",
+      "repo": "convaiinnovations/laya",
+      "rank": 2,
+      "path": "Safetensors \u00b7 native Python MPS",
+      "sha": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851"
+    },
+    {
+      "label": "CLM v0.1",
+      "repo": "Contrastive-LM/CLM-v0.1-8B",
+      "rank": 5,
+      "path": "Qwen3 Safetensors MPS + original projection heads",
+      "sha": "e939398d4556fcd9400c76fa8c5a513202f42b0a"
+    },
+    {
+      "label": "Julia-1",
+      "repo": "SupersonicLabs/Julia-1",
+      "rank": 11,
+      "path": "Safetensors \u00b7 strict native Python MPS",
+      "sha": "a85b127321d580d65176c89ced8273f305745d85"
+    },
+    {
+      "label": "Jev-Omni",
+      "repo": "akhilaaa3/Jev-Omni",
+      "rank": 22,
+      "path": "Native loader requires CUDA; unavailable on this Mac",
+      "sha": "5addda86ddee081a68fb067477ea100c221b8917"
+    },
+    {
+      "label": "Lev",
+      "repo": "interfaze-ai/lev",
+      "rank": 48,
+      "path": "Safetensors \u00b7 native Python engine with MPS placement",
+      "sha": "f8ef71157ec06a7d3b6435bc0756f9d735c33748"
+    },
+    {
+      "label": "Winnow E4B",
+      "repo": "EldanRing/Winnow-E4B",
+      "rank": null,
+      "path": "Author publishes GGUF \u00b7 Ollaya / llama.cpp Metal",
+      "sha": "1b257e8fa80b270a62338362a8b35e37f7890273"
+    },
+    {
+      "label": "Kev 4B",
+      "repo": "jaredpalmer/kev-4b",
+      "rank": 90,
+      "path": "Safetensors + pointer head \u00b7 native Python MPS / MLX",
+      "sha": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101"
+    }
+  ]
+}

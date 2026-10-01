@@ -1,0 +1,13 @@
+{
+  "replay": "/Users/jso/code/documentation/tetris/evidence/replay.json",
+  "verified": true,
+  "model_digest": "24e550a16a7081881be2f1f0d91e8cc13a597472735c04119f035a0a85c67e0c",
+  "pieces": 27,
+  "lines": 6,
+  "score": 600,
+  "api_calls": 51,
+  "mean_placement_ms": 7203.8,
+  "median_api_ms": 4638.7,
+  "max_height": 7,
+  "holes": 3
+}

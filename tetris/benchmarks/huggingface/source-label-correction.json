@@ -1,0 +1,47 @@
+{
+  "before_sha256": "76ffc675ec599d694ba8e6ed1b2bcd5bed5576eca026a53d11b7622e13239ec0",
+  "after_sha256": "1a9a18e36706c44548952bef6ab0d98ffa0fde0b665a9410de56d213e60b86c0",
+  "reason": "Benchmark runner had overwritten the source label on singleton landings. Corrected only labels after reconstructing each board and verifying one legal move, no API calls and zero latency. Inference and all measured results unchanged.",
+  "changes": [
+    {
+      "model": "laya:multilingual-mps",
+      "seed": 42,
+      "turn": 27,
+      "previous_source": "native-decision-api",
+      "new_source": "forced",
+      "legal_candidates": 1
+    },
+    {
+      "model": "laya:multilingual-mps",
+      "seed": 42,
+      "turn": 28,
+      "previous_source": "native-decision-api",
+      "new_source": "forced",
+      "legal_candidates": 1
+    },
+    {
+      "model": "laya:multilingual-mps",
+      "seed": 42,
+      "turn": 29,
+      "previous_source": "native-decision-api",
+      "new_source": "forced",
+      "legal_candidates": 1
+    },
+    {
+      "model": "clm:8b-mps",
+      "seed": 42,
+      "turn": 24,
+      "previous_source": "native-decision-api",
+      "new_source": "forced",
+      "legal_candidates": 1
+    },
+    {
+      "model": "clm:8b-mps",
+      "seed": 123,
+      "turn": 21,
+      "previous_source": "native-decision-api",
+      "new_source": "forced",
+      "legal_candidates": 1
+    }
+  ]
+}

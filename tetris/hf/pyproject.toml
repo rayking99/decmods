@@ -1,0 +1,19 @@
+[project]
+name = "tetris-hf-inference"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "torch>=2.7",
+  "transformers>=5.17",
+  "peft>=0.21",
+  "huggingface-hub>=0.34",
+  "safetensors>=0.4",
+  "fastapi>=0.110",
+  "uvicorn>=0.27",
+  "laya",
+  "httpx",
+  "requests",
+]
+
+[tool.uv.sources]
+laya = { path = "vendor/laya" }

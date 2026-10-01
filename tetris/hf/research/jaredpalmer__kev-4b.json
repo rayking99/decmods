@@ -1,0 +1,405 @@
+{
+  "_id": "6aae08af72cc7f47eaf11c0e",
+  "id": "jaredpalmer/kev-4b",
+  "private": false,
+  "pipeline_tag": "text-classification",
+  "library_name": "peft",
+  "tags": [
+    "peft",
+    "safetensors",
+    "decision-model",
+    "calibration",
+    "lora",
+    "multiple-choice",
+    "typesafe",
+    "qwen3.5",
+    "text-classification",
+    "en",
+    "dataset:legacy-datasets/banking77",
+    "dataset:google/boolq",
+    "dataset:fancyzhx/ag_news",
+    "dataset:nyu-mll/multi_nli",
+    "dataset:SetFit/sst5",
+    "dataset:Yelp/yelp_review_full",
+    "dataset:CogComp/trec",
+    "dataset:fancyzhx/dbpedia_14",
+    "dataset:SetFit/amazon_reviews_multi_en",
+    "dataset:stanfordnlp/imdb",
+    "base_model:Qwen/Qwen3.5-4B-Base",
+    "base_model:adapter:Qwen/Qwen3.5-4B-Base",
+    "license:apache-2.0",
+    "model-index",
+    "region:us"
+  ],
+  "downloads": 13170,
+  "likes": 92,
+  "modelId": "jaredpalmer/kev-4b",
+  "author": "jaredpalmer",
+  "sha": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+  "lastModified": "2026-09-24T14:36:57.000Z",
+  "gated": false,
+  "disabled": false,
+  "widgetData": [
+    {
+      "text": "I like you. I love you"
+    }
+  ],
+  "model-index": [
+    {
+      "name": "Kev-4B",
+      "results": [
+        {
+          "task": {
+            "type": "text-classification",
+            "name": "typed decision",
+            "skill records": null,
+            "locked test": null
+          },
+          "dataset": {
+            "type": "mixed",
+            "name": "hard-v1 test (1,088 questions; programmatic labels, held-out templates; read once)"
+          },
+          "metrics": [
+            {
+              "type": "accuracy",
+              "value": 0.803,
+              "verified": false
+            },
+            {
+              "type": "brier_score",
+              "value": 0.278,
+              "verified": false
+            }
+          ]
+        },
+        {
+          "task": {
+            "type": "text-classification",
+            "name": "typed decision",
+            "developer tooling": null,
+            "locked test": null
+          },
+          "dataset": {
+            "type": "mixed",
+            "name": "devtools-v1 test (1,071 questions; six public developer-tooling sources; read once)"
+          },
+          "metrics": [
+            {
+              "type": "accuracy",
+              "value": 0.756,
+              "verified": false
+            },
+            {
+              "type": "brier_score",
+              "value": 0.342,
+              "verified": false
+            }
+          ]
+        },
+        {
+          "task": {
+            "type": "text-classification",
+            "name": "typed decision (choice / noul / score)"
+          },
+          "dataset": {
+            "type": "mixed",
+            "name": "decision-v7 development (1,264 questions; ten trained public sources + programmatic policy data)"
+          },
+          "metrics": [
+            {
+              "type": "accuracy",
+              "value": 0.873,
+              "verified": false
+            },
+            {
+              "type": "expected_calibration_error",
+              "value": 0.013,
+              "name": "ECE, as served",
+              "verified": false
+            }
+          ]
+        },
+        {
+          "task": {
+            "type": "text-classification",
+            "name": "typed decision",
+            "out-of-domain": null
+          },
+          "dataset": {
+            "type": "mixed",
+            "name": "transfer-v4 development (656 questions; six never-trained sources + held-out policy structures)"
+          },
+          "metrics": [
+            {
+              "type": "accuracy",
+              "value": 0.817,
+              "verified": false
+            },
+            {
+              "type": "brier_score",
+              "value": 0.243,
+              "verified": false
+            }
+          ]
+        },
+        {
+          "task": {
+            "type": "text-classification",
+            "name": "typed decision",
+            "out-of-domain": null,
+            "locked test": null
+          },
+          "dataset": {
+            "type": "mixed",
+            "name": "transfer-v4 test (read once)"
+          },
+          "metrics": [
+            {
+              "type": "accuracy",
+              "value": 0.838,
+              "verified": false
+            },
+            {
+              "type": "brier_score",
+              "value": 0.224,
+              "verified": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "config": {
+    "tokenizer_config": {
+      "bos_token": null,
+      "eos_token": "<|endoftext|>",
+      "pad_token": "<|endoftext|>",
+      "unk_token": null
+    },
+    "peft": {
+      "base_model_name_or_path": "Qwen/Qwen3.5-4B-Base",
+      "task_type": "FEATURE_EXTRACTION"
+    }
+  },
+  "cardData": {
+    "language": "en",
+    "license": "apache-2.0",
+    "library_name": "peft",
+    "base_model": "Qwen/Qwen3.5-4B-Base",
+    "base_model_relation": "adapter",
+    "pipeline_tag": "text-classification",
+    "tags": [
+      "decision-model",
+      "calibration",
+      "lora",
+      "multiple-choice",
+      "typesafe",
+      "qwen3.5"
+    ],
+    "datasets": [
+      "legacy-datasets/banking77",
+      "google/boolq",
+      "fancyzhx/ag_news",
+      "nyu-mll/multi_nli",
+      "SetFit/sst5",
+      "Yelp/yelp_review_full",
+      "CogComp/trec",
+      "fancyzhx/dbpedia_14",
+      "SetFit/amazon_reviews_multi_en",
+      "stanfordnlp/imdb"
+    ],
+    "metrics": [
+      "accuracy",
+      "brier_score",
+      "expected_calibration_error"
+    ],
+    "model-index": [
+      {
+        "name": "Kev-4B",
+        "results": [
+          {
+            "task": {
+              "type": "text-classification",
+              "name": "typed decision",
+              "skill records": null,
+              "locked test": null
+            },
+            "dataset": {
+              "type": "mixed",
+              "name": "hard-v1 test (1,088 questions; programmatic labels, held-out templates; read once)"
+            },
+            "metrics": [
+              {
+                "type": "accuracy",
+                "value": 0.803,
+                "verified": false
+              },
+              {
+                "type": "brier_score",
+                "value": 0.278,
+                "verified": false
+              }
+            ]
+          },
+          {
+            "task": {
+              "type": "text-classification",
+              "name": "typed decision",
+              "developer tooling": null,
+              "locked test": null
+            },
+            "dataset": {
+              "type": "mixed",
+              "name": "devtools-v1 test (1,071 questions; six public developer-tooling sources; read once)"
+            },
+            "metrics": [
+              {
+                "type": "accuracy",
+                "value": 0.756,
+                "verified": false
+              },
+              {
+                "type": "brier_score",
+                "value": 0.342,
+                "verified": false
+              }
+            ]
+          },
+          {
+            "task": {
+              "type": "text-classification",
+              "name": "typed decision (choice / noul / score)"
+            },
+            "dataset": {
+              "type": "mixed",
+              "name": "decision-v7 development (1,264 questions; ten trained public sources + programmatic policy data)"
+            },
+            "metrics": [
+              {
+                "type": "accuracy",
+                "value": 0.873,
+                "verified": false
+              },
+              {
+                "type": "expected_calibration_error",
+                "value": 0.013,
+                "name": "ECE, as served",
+                "verified": false
+              }
+            ]
+          },
+          {
+            "task": {
+              "type": "text-classification",
+              "name": "typed decision",
+              "out-of-domain": null
+            },
+            "dataset": {
+              "type": "mixed",
+              "name": "transfer-v4 development (656 questions; six never-trained sources + held-out policy structures)"
+            },
+            "metrics": [
+              {
+                "type": "accuracy",
+                "value": 0.817,
+                "verified": false
+              },
+              {
+                "type": "brier_score",
+                "value": 0.243,
+                "verified": false
+              }
+            ]
+          },
+          {
+            "task": {
+              "type": "text-classification",
+              "name": "typed decision",
+              "out-of-domain": null,
+              "locked test": null
+            },
+            "dataset": {
+              "type": "mixed",
+              "name": "transfer-v4 test (read once)"
+            },
+            "metrics": [
+              {
+                "type": "accuracy",
+                "value": 0.838,
+                "verified": false
+              },
+              {
+                "type": "brier_score",
+                "value": 0.224,
+                "verified": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes"
+    },
+    {
+      "rfilename": "README.md"
+    },
+    {
+      "rfilename": "adapter_config.json"
+    },
+    {
+      "rfilename": "adapter_model.safetensors"
+    },
+    {
+      "rfilename": "added_tokens.json"
+    },
+    {
+      "rfilename": "head.pt"
+    },
+    {
+      "rfilename": "merges.txt"
+    },
+    {
+      "rfilename": "provenance.json"
+    },
+    {
+      "rfilename": "result.json"
+    },
+    {
+      "rfilename": "special_tokens_map.json"
+    },
+    {
+      "rfilename": "tokenizer.json"
+    },
+    {
+      "rfilename": "tokenizer_config.json"
+    },
+    {
+      "rfilename": "train.log"
+    },
+    {
+      "rfilename": "training_config.json"
+    },
+    {
+      "rfilename": "training_metrics.json"
+    },
+    {
+      "rfilename": "vocab.json"
+    }
+  ],
+  "spaces": [
+    "multimodalart/jev-decision-index",
+    "jaredpalmer/kev",
+    "mayafree/typed-decision-leaderboard",
+    "hotchpotch/S1MB-leaderboard",
+    "jaredpalmer/kev-4b-decision-demo",
+    "MahmoudGhraibeh/kev-decisions",
+    "KroZenDev/dg_gtp_4o_mini_0",
+    "sayshara/capability-decision-lab",
+    "uulonger/jev-decision-index"
+  ],
+  "createdAt": "2026-09-19T03:59:43.000Z",
+  "usedStorage": 852219076
+}

@@ -1,0 +1,18 @@
+{
+  "models": [
+    {
+      "device": "mps:0",
+      "dtype": "bfloat16 encoder / float32 native heads",
+      "backend": "HF Qwen3 last-token embedding adapter + native CLM heads/schema",
+      "encoder_cache": true,
+      "projection_cache": false,
+      "max_len": 2048,
+      "note": "Cached repeated states/options included in overall median; fresh first-order timing reported separately.",
+      "model": "clm:8b-mps",
+      "torch": "2.14.1",
+      "transformers": "5.18.0"
+    }
+  ],
+  "repo": "Contrastive-LM/CLM-v0.1-8B",
+  "checkpoint": "e939398d4556fcd9400c76fa8c5a513202f42b0a"
+}

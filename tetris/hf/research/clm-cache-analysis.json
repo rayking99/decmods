@@ -1,0 +1,6 @@
+{
+  "first_order_median_ms": 2126.5,
+  "repeated_order_median_ms": 6.6,
+  "encoder_cache": true,
+  "projection_cache": false
+}

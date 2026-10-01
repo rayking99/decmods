@@ -1,0 +1,17 @@
+{
+  "models": [
+    {
+      "device": "mps",
+      "dtype": "torch.float32",
+      "backend": "native Laya / PyTorch",
+      "max_len": 8192,
+      "head_max_len": 2048,
+      "note": "Native multilingual checkpoint supports extended 8192-token context. Lossless inputs.",
+      "model": "laya:multilingual-mps",
+      "torch": "2.14.1",
+      "transformers": "5.18.0"
+    }
+  ],
+  "repo": "convaiinnovations/laya",
+  "checkpoint": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851"
+}

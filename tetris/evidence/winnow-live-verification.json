@@ -1,0 +1,13 @@
+{
+  "replay": "/Users/jso/code/documentation/tetris/evidence/winnow-live-replay.json",
+  "verified": true,
+  "model_digest": "dd4bf88aa50bebb02e7a26fbebed14682befd037e3e89789ee22b9793f82d226",
+  "pieces": 54,
+  "lines": 19,
+  "score": 2200,
+  "api_calls": 100,
+  "mean_placement_ms": 1397.9,
+  "median_api_ms": 840.0,
+  "max_height": 5,
+  "holes": 0
+}

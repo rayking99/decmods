@@ -1,0 +1,989 @@
+{
+  "models": [
+    {
+      "name": "winnow:e4b",
+      "model": "winnow:e4b",
+      "size": 8005451502,
+      "digest": "dd4bf88aa50bebb02e7a26fbebed14682befd037e3e89789ee22b9793f82d226",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "winnow",
+        "families": [
+          "winnow"
+        ],
+        "parameter_size": "7.5B",
+        "quantization_level": "Q8_0"
+      },
+      "expires_at": "2026-10-01T05:26:02.880235417Z",
+      "size_vram": 8005451502,
+      "context_length": 8192,
+      "device": "metal"
+    }
+  ],
+  "repo": "EldanRing/Winnow-E4B",
+  "checkpoint": "1b257e8fa80b270a62338362a8b35e37f7890273",
+  "ollaya": "0.8.0",
+  "manifest": {
+    "schemaVersion": 2,
+    "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+    "config": {
+      "mediaType": "application/vnd.ollaya.config.v1+json",
+      "digest": "sha256:274b51337582ffed72cbc67ac9508949b4c7da8bf3d9f6e673b2be864ac3dbb3",
+      "size": 510,
+      "urls": [
+        "https://ollaya.dev/blobs/sha256-274b51337582ffed72cbc67ac9508949b4c7da8bf3d9f6e673b2be864ac3dbb3"
+      ]
+    },
+    "layers": [
+      {
+        "mediaType": "application/vnd.ollaya.weights.gguf",
+        "digest": "sha256:840e3f50e5a9c218727f44e121d1b37cc9e2c3b318c8eb422ba6ef2e27b618a2",
+        "size": 8005437472,
+        "urls": [
+          "https://huggingface.co/EldanRing/Winnow-E4B/resolve/734302fe5fbfeb3f21a7ece62653c9539be4aaf3/gguf/Winnow-E4B-Q8_0.gguf"
+        ],
+        "annotations": {
+          "org.ollaya.quantization": "Q8_0"
+        }
+      },
+      {
+        "mediaType": "application/vnd.ollaya.decision",
+        "digest": "sha256:3b76b10f430adffd51097e0dc97ae676a1f60e8f216a00e6aacb48faf95be5ad",
+        "size": 2058,
+        "urls": [
+          "https://ollaya.dev/blobs/sha256-3b76b10f430adffd51097e0dc97ae676a1f60e8f216a00e6aacb48faf95be5ad"
+        ]
+      },
+      {
+        "mediaType": "application/vnd.ollaya.calibration",
+        "digest": "sha256:82007815eb87481ab1f03d337327145c615e0220ba4648e32d95175c36da023c",
+        "size": 258,
+        "urls": [
+          "https://ollaya.dev/blobs/sha256-82007815eb87481ab1f03d337327145c615e0220ba4648e32d95175c36da023c"
+        ]
+      },
+      {
+        "mediaType": "application/vnd.ollaya.license",
+        "digest": "sha256:b8186b826818c648764eaae1f08d4006208c078217497425c3df8666a4b4be35",
+        "size": 11204,
+        "urls": [
+          "https://ollaya.dev/blobs/sha256-b8186b826818c648764eaae1f08d4006208c078217497425c3df8666a4b4be35"
+        ]
+      }
+    ]
+  },
+  "loader_probe": {
+    "source": "ollama",
+    "model": "winnow:e4b",
+    "choice": "r0_c9",
+    "latency_ms": 26182.5,
+    "candidate_count": 9,
+    "calls": [
+      {
+        "request": {
+          "model": "winnow:e4b",
+          "state": {
+            "piece": "O",
+            "next": "L",
+            "board_top_to_bottom": [
+              "..........",
+              "..........",
+              "..........",
+              "..........",
+              "..........",
+              "..........",
+              "..........",
+              "..........",
+              "..........",
+              "..........",
+              "..........",
+              "..........",
+              "..........",
+              "..........",
+              "..........",
+              "..........",
+              "..........",
+              "..........",
+              "..........",
+              ".........."
+            ],
+            "definitions": "holes=empty cells below blocks; peak=max column height; total_height=sum of column heights; roughness=sum of adjacent height differences. All options are legal hard drops. Metrics are after line clears."
+          },
+          "keep_alive": "30m",
+          "questions": {
+            "placement": {
+              "type": "choice",
+              "instructions": "Choose the legal Tetris landing by this exact priority rule: first minimize holes; among ties maximize lines cleared; among ties minimize peak height; then minimize total height; then minimize roughness. Any remaining tie is acceptable. Compare option outcomes AFTER row clearing. This rule is the evaluation target.",
+              "criteria": {
+                "r0_c5": "rotation=0, column=5, lines=0, holes=0, peak=2, total_height=4, roughness=4",
+                "r0_c2": "rotation=0, column=2, lines=0, holes=0, peak=2, total_height=4, roughness=4",
+                "r0_c9": "rotation=0, column=9, lines=0, holes=0, peak=2, total_height=4, roughness=2",
+                "r0_c4": "rotation=0, column=4, lines=0, holes=0, peak=2, total_height=4, roughness=4",
+                "r0_c7": "rotation=0, column=7, lines=0, holes=0, peak=2, total_height=4, roughness=4",
+                "r0_c6": "rotation=0, column=6, lines=0, holes=0, peak=2, total_height=4, roughness=4",
+                "r0_c3": "rotation=0, column=3, lines=0, holes=0, peak=2, total_height=4, roughness=4",
+                "r0_c8": "rotation=0, column=8, lines=0, holes=0, peak=2, total_height=4, roughness=4",
+                "r0_c1": "rotation=0, column=1, lines=0, holes=0, peak=2, total_height=4, roughness=2"
+              }
+            }
+          }
+        },
+        "response": {
+          "model": "winnow:e4b",
+          "answers": {
+            "placement": {
+              "type": "choice",
+              "choice": "r0_c9",
+              "confidence": 0.5643,
+              "probabilities": {
+                "r0_c5": 0.0242,
+                "r0_c2": 0.0179,
+                "r0_c9": 0.6127,
+                "r0_c4": 0.014,
+                "r0_c7": 0.0091,
+                "r0_c6": 0.0061,
+                "r0_c3": 0.0023,
+                "r0_c8": 0.02,
+                "r0_c1": 0.2936
+              }
+            }
+          },
+          "usage": {
+            "input_tokens": 593,
+            "output_tokens": 0
+          },
+          "gateway": {
+            "native_model": "winnow:e4b",
+            "native_endpoint": "http://127.0.0.1:11435"
+          }
+        },
+        "latency_ms": 26182.5,
+        "answer": {
+          "type": "choice",
+          "choice": "r0_c9",
+          "confidence": 0.5643,
+          "probabilities": {
+            "r0_c5": 0.0242,
+            "r0_c2": 0.0179,
+            "r0_c9": 0.6127,
+            "r0_c4": 0.014,
+            "r0_c7": 0.0091,
+            "r0_c6": 0.0061,
+            "r0_c3": 0.0023,
+            "r0_c8": 0.02,
+            "r0_c1": 0.2936
+          }
+        },
+        "options": [
+          {
+            "id": "r0_c5",
+            "piece": "O",
+            "rotation": 0,
+            "x": 4,
+            "y": 18,
+            "cells": [
+              [
+                4,
+                18
+              ],
+              [
+                4,
+                19
+              ],
+              [
+                5,
+                18
+              ],
+              [
+                5,
+                19
+              ]
+            ],
+            "cleared": 0,
+            "metrics": {
+              "heights": [
+                0,
+                0,
+                0,
+                0,
+                2,
+                2,
+                0,
+                0,
+                0,
+                0
+              ],
+              "holes": 0,
+              "max_height": 2,
+              "aggregate_height": 4,
+              "bumpiness": 4
+            }
+          },
+          {
+            "id": "r0_c2",
+            "piece": "O",
+            "rotation": 0,
+            "x": 1,
+            "y": 18,
+            "cells": [
+              [
+                1,
+                18
+              ],
+              [
+                1,
+                19
+              ],
+              [
+                2,
+                18
+              ],
+              [
+                2,
+                19
+              ]
+            ],
+            "cleared": 0,
+            "metrics": {
+              "heights": [
+                0,
+                2,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "holes": 0,
+              "max_height": 2,
+              "aggregate_height": 4,
+              "bumpiness": 4
+            }
+          },
+          {
+            "id": "r0_c9",
+            "piece": "O",
+            "rotation": 0,
+            "x": 8,
+            "y": 18,
+            "cells": [
+              [
+                8,
+                18
+              ],
+              [
+                8,
+                19
+              ],
+              [
+                9,
+                18
+              ],
+              [
+                9,
+                19
+              ]
+            ],
+            "cleared": 0,
+            "metrics": {
+              "heights": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                2
+              ],
+              "holes": 0,
+              "max_height": 2,
+              "aggregate_height": 4,
+              "bumpiness": 2
+            }
+          },
+          {
+            "id": "r0_c4",
+            "piece": "O",
+            "rotation": 0,
+            "x": 3,
+            "y": 18,
+            "cells": [
+              [
+                3,
+                18
+              ],
+              [
+                3,
+                19
+              ],
+              [
+                4,
+                18
+              ],
+              [
+                4,
+                19
+              ]
+            ],
+            "cleared": 0,
+            "metrics": {
+              "heights": [
+                0,
+                0,
+                0,
+                2,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "holes": 0,
+              "max_height": 2,
+              "aggregate_height": 4,
+              "bumpiness": 4
+            }
+          },
+          {
+            "id": "r0_c7",
+            "piece": "O",
+            "rotation": 0,
+            "x": 6,
+            "y": 18,
+            "cells": [
+              [
+                6,
+                18
+              ],
+              [
+                6,
+                19
+              ],
+              [
+                7,
+                18
+              ],
+              [
+                7,
+                19
+              ]
+            ],
+            "cleared": 0,
+            "metrics": {
+              "heights": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                2,
+                0,
+                0
+              ],
+              "holes": 0,
+              "max_height": 2,
+              "aggregate_height": 4,
+              "bumpiness": 4
+            }
+          },
+          {
+            "id": "r0_c6",
+            "piece": "O",
+            "rotation": 0,
+            "x": 5,
+            "y": 18,
+            "cells": [
+              [
+                5,
+                18
+              ],
+              [
+                5,
+                19
+              ],
+              [
+                6,
+                18
+              ],
+              [
+                6,
+                19
+              ]
+            ],
+            "cleared": 0,
+            "metrics": {
+              "heights": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                2,
+                0,
+                0,
+                0
+              ],
+              "holes": 0,
+              "max_height": 2,
+              "aggregate_height": 4,
+              "bumpiness": 4
+            }
+          },
+          {
+            "id": "r0_c3",
+            "piece": "O",
+            "rotation": 0,
+            "x": 2,
+            "y": 18,
+            "cells": [
+              [
+                2,
+                18
+              ],
+              [
+                2,
+                19
+              ],
+              [
+                3,
+                18
+              ],
+              [
+                3,
+                19
+              ]
+            ],
+            "cleared": 0,
+            "metrics": {
+              "heights": [
+                0,
+                0,
+                2,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "holes": 0,
+              "max_height": 2,
+              "aggregate_height": 4,
+              "bumpiness": 4
+            }
+          },
+          {
+            "id": "r0_c8",
+            "piece": "O",
+            "rotation": 0,
+            "x": 7,
+            "y": 18,
+            "cells": [
+              [
+                7,
+                18
+              ],
+              [
+                7,
+                19
+              ],
+              [
+                8,
+                18
+              ],
+              [
+                8,
+                19
+              ]
+            ],
+            "cleared": 0,
+            "metrics": {
+              "heights": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                2,
+                0
+              ],
+              "holes": 0,
+              "max_height": 2,
+              "aggregate_height": 4,
+              "bumpiness": 4
+            }
+          },
+          {
+            "id": "r0_c1",
+            "piece": "O",
+            "rotation": 0,
+            "x": 0,
+            "y": 18,
+            "cells": [
+              [
+                0,
+                18
+              ],
+              [
+                0,
+                19
+              ],
+              [
+                1,
+                18
+              ],
+              [
+                1,
+                19
+              ]
+            ],
+            "cleared": 0,
+            "metrics": {
+              "heights": [
+                2,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "holes": 0,
+              "max_height": 2,
+              "aggregate_height": 4,
+              "bumpiness": 2
+            }
+          }
+        ]
+      }
+    ],
+    "probabilities": {
+      "r0_c5": 0.0242,
+      "r0_c2": 0.0179,
+      "r0_c9": 0.6127,
+      "r0_c4": 0.014,
+      "r0_c7": 0.0091,
+      "r0_c6": 0.0061,
+      "r0_c3": 0.0023,
+      "r0_c8": 0.02,
+      "r0_c1": 0.2936
+    },
+    "concentration": 0.5643,
+    "options": [
+      {
+        "id": "r0_c5",
+        "piece": "O",
+        "rotation": 0,
+        "x": 4,
+        "y": 18,
+        "cells": [
+          [
+            4,
+            18
+          ],
+          [
+            4,
+            19
+          ],
+          [
+            5,
+            18
+          ],
+          [
+            5,
+            19
+          ]
+        ],
+        "cleared": 0,
+        "metrics": {
+          "heights": [
+            0,
+            0,
+            0,
+            0,
+            2,
+            2,
+            0,
+            0,
+            0,
+            0
+          ],
+          "holes": 0,
+          "max_height": 2,
+          "aggregate_height": 4,
+          "bumpiness": 4
+        }
+      },
+      {
+        "id": "r0_c2",
+        "piece": "O",
+        "rotation": 0,
+        "x": 1,
+        "y": 18,
+        "cells": [
+          [
+            1,
+            18
+          ],
+          [
+            1,
+            19
+          ],
+          [
+            2,
+            18
+          ],
+          [
+            2,
+            19
+          ]
+        ],
+        "cleared": 0,
+        "metrics": {
+          "heights": [
+            0,
+            2,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "holes": 0,
+          "max_height": 2,
+          "aggregate_height": 4,
+          "bumpiness": 4
+        }
+      },
+      {
+        "id": "r0_c9",
+        "piece": "O",
+        "rotation": 0,
+        "x": 8,
+        "y": 18,
+        "cells": [
+          [
+            8,
+            18
+          ],
+          [
+            8,
+            19
+          ],
+          [
+            9,
+            18
+          ],
+          [
+            9,
+            19
+          ]
+        ],
+        "cleared": 0,
+        "metrics": {
+          "heights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            2
+          ],
+          "holes": 0,
+          "max_height": 2,
+          "aggregate_height": 4,
+          "bumpiness": 2
+        }
+      },
+      {
+        "id": "r0_c4",
+        "piece": "O",
+        "rotation": 0,
+        "x": 3,
+        "y": 18,
+        "cells": [
+          [
+            3,
+            18
+          ],
+          [
+            3,
+            19
+          ],
+          [
+            4,
+            18
+          ],
+          [
+            4,
+            19
+          ]
+        ],
+        "cleared": 0,
+        "metrics": {
+          "heights": [
+            0,
+            0,
+            0,
+            2,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "holes": 0,
+          "max_height": 2,
+          "aggregate_height": 4,
+          "bumpiness": 4
+        }
+      },
+      {
+        "id": "r0_c7",
+        "piece": "O",
+        "rotation": 0,
+        "x": 6,
+        "y": 18,
+        "cells": [
+          [
+            6,
+            18
+          ],
+          [
+            6,
+            19
+          ],
+          [
+            7,
+            18
+          ],
+          [
+            7,
+            19
+          ]
+        ],
+        "cleared": 0,
+        "metrics": {
+          "heights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            2,
+            0,
+            0
+          ],
+          "holes": 0,
+          "max_height": 2,
+          "aggregate_height": 4,
+          "bumpiness": 4
+        }
+      },
+      {
+        "id": "r0_c6",
+        "piece": "O",
+        "rotation": 0,
+        "x": 5,
+        "y": 18,
+        "cells": [
+          [
+            5,
+            18
+          ],
+          [
+            5,
+            19
+          ],
+          [
+            6,
+            18
+          ],
+          [
+            6,
+            19
+          ]
+        ],
+        "cleared": 0,
+        "metrics": {
+          "heights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            2,
+            0,
+            0,
+            0
+          ],
+          "holes": 0,
+          "max_height": 2,
+          "aggregate_height": 4,
+          "bumpiness": 4
+        }
+      },
+      {
+        "id": "r0_c3",
+        "piece": "O",
+        "rotation": 0,
+        "x": 2,
+        "y": 18,
+        "cells": [
+          [
+            2,
+            18
+          ],
+          [
+            2,
+            19
+          ],
+          [
+            3,
+            18
+          ],
+          [
+            3,
+            19
+          ]
+        ],
+        "cleared": 0,
+        "metrics": {
+          "heights": [
+            0,
+            0,
+            2,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "holes": 0,
+          "max_height": 2,
+          "aggregate_height": 4,
+          "bumpiness": 4
+        }
+      },
+      {
+        "id": "r0_c8",
+        "piece": "O",
+        "rotation": 0,
+        "x": 7,
+        "y": 18,
+        "cells": [
+          [
+            7,
+            18
+          ],
+          [
+            7,
+            19
+          ],
+          [
+            8,
+            18
+          ],
+          [
+            8,
+            19
+          ]
+        ],
+        "cleared": 0,
+        "metrics": {
+          "heights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            2,
+            0
+          ],
+          "holes": 0,
+          "max_height": 2,
+          "aggregate_height": 4,
+          "bumpiness": 4
+        }
+      },
+      {
+        "id": "r0_c1",
+        "piece": "O",
+        "rotation": 0,
+        "x": 0,
+        "y": 18,
+        "cells": [
+          [
+            0,
+            18
+          ],
+          [
+            0,
+            19
+          ],
+          [
+            1,
+            18
+          ],
+          [
+            1,
+            19
+          ]
+        ],
+        "cleared": 0,
+        "metrics": {
+          "heights": [
+            2,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "holes": 0,
+          "max_height": 2,
+          "aggregate_height": 4,
+          "bumpiness": 2
+        }
+      }
+    ]
+  }
+}

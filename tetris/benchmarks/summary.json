@@ -1,0 +1,156 @@
+{
+  "version": 1,
+  "started": "2026-10-01T04:28:37.070155+00:00",
+  "hardware": "Apple M3 Max, 128 GB unified memory",
+  "ollama": "0.35.0",
+  "scope": [
+    "nimble",
+    "tev1:4b",
+    "tev1:0.8b"
+  ],
+  "suite_cases": 32,
+  "orders": 2,
+  "game_seeds": [
+    42,
+    123
+  ],
+  "game_piece_limit": 40,
+  "suite_sha256": "cffc95a8bd0eb9738ceb119237a451c4bf53c3079e8dde36ce1aa57ac936132c",
+  "policy": "Choose the legal Tetris landing by this exact priority rule: first minimize holes; among ties maximize lines cleared; among ties minimize peak height; then minimize total height; then minimize roughness. Any remaining tie is acceptable. Compare option outcomes AFTER row clearing. This rule is the evaluation target.",
+  "description_encoding": "compact-v1",
+  "method": "Same 32 frozen boards and deterministic option-order permutations per model. Agreement is with a supplied one-step lexicographic policy, accepting all ties; not optimal Tetris accuracy. Serialized inference, loaded-model trials after warmup. Identical seeds for separate games; outcomes may diverge. No animation delays. Prompt-cache effects are possible. Group tournament above 26 choices.",
+  "status": "complete",
+  "active": null,
+  "updated": "2026-10-01T04:45:45.355908+00:00",
+  "models": [
+    {
+      "name": "nimble",
+      "status": "complete",
+      "summary": {
+        "trials": 64,
+        "valid": 64,
+        "errors": 0,
+        "agreement_pct": 46.9,
+        "nondominated_pct": 54.7,
+        "mean_placement_ms": 2911.5,
+        "median_placement_ms": 2021.1,
+        "p95_placement_ms": 4786.3,
+        "median_call_ms": 1815.4,
+        "api_calls": 120,
+        "max_input_tokens": 1183,
+        "games": [
+          {
+            "seed": 42,
+            "pieces": 40,
+            "lines": 8,
+            "score": 1000,
+            "status": "piece_limit",
+            "holes": 8,
+            "max_height": 10
+          },
+          {
+            "seed": 123,
+            "pieces": 40,
+            "lines": 12,
+            "score": 1400,
+            "status": "piece_limit",
+            "holes": 4,
+            "max_height": 5
+          }
+        ],
+        "total_lines": 20,
+        "total_pieces": 80
+      },
+      "cold_start_ms": 2548.6,
+      "original_format_probe": {
+        "compatible": true
+      }
+    },
+    {
+      "name": "tev1:4b",
+      "status": "complete",
+      "summary": {
+        "trials": 64,
+        "valid": 64,
+        "errors": 0,
+        "agreement_pct": 39.1,
+        "nondominated_pct": 50.0,
+        "mean_placement_ms": 2119.5,
+        "median_placement_ms": 1504.8,
+        "p95_placement_ms": 3704.5,
+        "median_call_ms": 1276.7,
+        "api_calls": 120,
+        "max_input_tokens": 1145,
+        "games": [
+          {
+            "seed": 42,
+            "pieces": 40,
+            "lines": 6,
+            "score": 700,
+            "status": "piece_limit",
+            "holes": 10,
+            "max_height": 14
+          },
+          {
+            "seed": 123,
+            "pieces": 40,
+            "lines": 7,
+            "score": 900,
+            "status": "piece_limit",
+            "holes": 10,
+            "max_height": 13
+          }
+        ],
+        "total_lines": 13,
+        "total_pieces": 80
+      },
+      "cold_start_ms": 3400.6,
+      "original_format_probe": {
+        "compatible": true
+      }
+    },
+    {
+      "name": "tev1:0.8b",
+      "status": "complete",
+      "summary": {
+        "trials": 64,
+        "valid": 64,
+        "errors": 0,
+        "agreement_pct": 18.8,
+        "nondominated_pct": 21.9,
+        "mean_placement_ms": 509.6,
+        "median_placement_ms": 315.2,
+        "p95_placement_ms": 893.3,
+        "median_call_ms": 298.1,
+        "api_calls": 120,
+        "max_input_tokens": 1145,
+        "games": [
+          {
+            "seed": 42,
+            "pieces": 29,
+            "lines": 0,
+            "score": 0,
+            "status": "game_over",
+            "holes": 78,
+            "max_height": 20
+          },
+          {
+            "seed": 123,
+            "pieces": 35,
+            "lines": 1,
+            "score": 100,
+            "status": "game_over",
+            "holes": 69,
+            "max_height": 20
+          }
+        ],
+        "total_lines": 1,
+        "total_pieces": 64
+      },
+      "cold_start_ms": 2590.0,
+      "original_format_probe": {
+        "compatible": true
+      }
+    }
+  ]
+}
