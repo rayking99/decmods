@@ -1,0 +1,11 @@
+[project]
+name = "decision-lab-clef-mlx"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "mlx>=0.32.2",
+  "mlx-vlm",
+  "huggingface-hub>=1.0",
+  "fastapi",
+  "uvicorn",
+]

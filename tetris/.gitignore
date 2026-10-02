@@ -7,3 +7,4 @@ hf/models/
 hf/runtime/
 hf/cache/
 hf/julia_runtime/.venv/
+hf/clef_runtime/.venv/

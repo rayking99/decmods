@@ -24,6 +24,8 @@ jobs:
         run: node --test docs/assets/game-engines.test.mjs
       - name: Tetris physics and API contracts
         run: python -m unittest discover -s tetris -v
+      - name: Reconstruct paired Tetris model evidence
+        run: python tetris/verify_benchmark.py --results tetris/benchmarks/huggingface/results.json --baseline tetris/benchmarks/results.json
       - name: Reconstruct new recorded model evidence
         run: python arcade/verify.py
       - name: Reconstruct updated BlockStar probes

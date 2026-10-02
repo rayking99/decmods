@@ -1,0 +1,33 @@
+{
+  "models": [
+    {
+      "model": "clef-flash:mlx-4bit",
+      "repo": "mlx-community/clef-flash-4bit",
+      "checkpoint": "d9ec324f7992383bdfb7a0b4eed8b4b9d10f81be",
+      "native_source": "https://huggingface.co/mlx-community/clef-flash-4bit/blob/d9ec324f7992383bdfb7a0b4eed8b4b9d10f81be/clef_mlx.py",
+      "loader_sha256": "2a8560f0668ea00e8d1c557b3861ec9b8ee9a1398f85de9e2d1745a636c79f50",
+      "joint_head_sha256": "19cdcec8c81dc9212be320fff47462ab342fbc1278be4368fb3da71241cf5ba0",
+      "backend": "native Clef joint schema head / MLX VLM",
+      "device": "metal",
+      "dtype": "4-bit affine backbone / bfloat16 vision and unchanged joint head",
+      "quantization": {
+        "group_size": 64,
+        "bits": 4,
+        "mode": "affine"
+      },
+      "max_length": 16384,
+      "truncation": false,
+      "cache": "No request embedding or prefix cache in native Clef loader",
+      "option_order": "Native encoder sorts choice IDs; tournament group membership can still vary",
+      "confidence": "Native maximum softmax probability, rounded to four decimals",
+      "versions": {
+        "mlx": "0.32.3",
+        "mlx-vlm": "0.7.4",
+        "transformers": "5.18.0",
+        "huggingface-hub": "1.33.0",
+        "fastapi": "0.142.2",
+        "uvicorn": "0.54.0"
+      }
+    }
+  ]
+}

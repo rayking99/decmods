@@ -21,7 +21,7 @@
   ],
   "status": "complete",
   "active": null,
-  "updated": "2026-10-01T11:17:22.185888+00:00",
+  "updated": "2026-10-02T10:17:27.957343+00:00",
   "models": [
     {
       "name": "nimble",
@@ -1314,6 +1314,150 @@
           "original_valid": 2,
           "original_agreement_pct": 0.0,
           "original_median_ms": 82720.7,
+          "original_note": "One original 20×18 board in two orders; timing uses the first order. Remaining seven boards and capped replay are smaller fixtures. No full original puzzle solve by these models is claimed."
+        }
+      }
+    },
+    {
+      "name": "clef-flash:mlx-4bit",
+      "label": "Clef Flash 9B · MLX 4-bit",
+      "status": "complete",
+      "metadata": {
+        "model": "clef-flash:mlx-4bit",
+        "repo": "mlx-community/clef-flash-4bit",
+        "checkpoint": "d9ec324f7992383bdfb7a0b4eed8b4b9d10f81be",
+        "native_source": "https://huggingface.co/mlx-community/clef-flash-4bit/blob/d9ec324f7992383bdfb7a0b4eed8b4b9d10f81be/clef_mlx.py",
+        "loader_sha256": "2a8560f0668ea00e8d1c557b3861ec9b8ee9a1398f85de9e2d1745a636c79f50",
+        "joint_head_sha256": "19cdcec8c81dc9212be320fff47462ab342fbc1278be4368fb3da71241cf5ba0",
+        "backend": "native Clef joint schema head / MLX VLM",
+        "device": "metal",
+        "dtype": "4-bit affine backbone / bfloat16 vision and unchanged joint head",
+        "quantization": {
+          "group_size": 64,
+          "bits": 4,
+          "mode": "affine"
+        },
+        "max_length": 16384,
+        "truncation": false,
+        "cache": "No request embedding or prefix cache in native Clef loader",
+        "option_order": "Native encoder sorts choice IDs; tournament group membership can still vary",
+        "confidence": "Native maximum softmax probability, rounded to four decimals",
+        "versions": {
+          "mlx": "0.32.3",
+          "mlx-vlm": "0.7.4",
+          "transformers": "5.18.0",
+          "huggingface-hub": "1.33.0",
+          "fastapi": "0.142.2",
+          "uvicorn": "0.54.0"
+        },
+        "models": [
+          {
+            "model": "clef-flash:mlx-4bit",
+            "repo": "mlx-community/clef-flash-4bit",
+            "checkpoint": "d9ec324f7992383bdfb7a0b4eed8b4b9d10f81be",
+            "native_source": "https://huggingface.co/mlx-community/clef-flash-4bit/blob/d9ec324f7992383bdfb7a0b4eed8b4b9d10f81be/clef_mlx.py",
+            "loader_sha256": "2a8560f0668ea00e8d1c557b3861ec9b8ee9a1398f85de9e2d1745a636c79f50",
+            "joint_head_sha256": "19cdcec8c81dc9212be320fff47462ab342fbc1278be4368fb3da71241cf5ba0",
+            "backend": "native Clef joint schema head / MLX VLM",
+            "device": "metal",
+            "dtype": "4-bit affine backbone / bfloat16 vision and unchanged joint head",
+            "quantization": {
+              "group_size": 64,
+              "bits": 4,
+              "mode": "affine"
+            },
+            "max_length": 16384,
+            "truncation": false,
+            "cache": "No request embedding or prefix cache in native Clef loader",
+            "option_order": "Native encoder sorts choice IDs; tournament group membership can still vary",
+            "confidence": "Native maximum softmax probability, rounded to four decimals",
+            "versions": {
+              "mlx": "0.32.3",
+              "mlx-vlm": "0.7.4",
+              "transformers": "5.18.0",
+              "huggingface-hub": "1.33.0",
+              "fastapi": "0.142.2",
+              "uvicorn": "0.54.0"
+            }
+          }
+        ],
+        "metadata_captured": "2026-10-02T10:13:26.747578+00:00"
+      },
+      "games": {
+        "2048": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 100.0,
+          "median_ms": 564.3,
+          "p95_ms": 780.8,
+          "repeated_median_ms": 549.6,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "2048",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 24,
+              "score": 116,
+              "done": false,
+              "max_tile": 16
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal slide by lexicographically maximizing immediate merge score gained, then empty cells after the slide, then the largest tile. All ties are accepted. Evaluate before the random spawn. This is a one-move benchmark, not an optimal full-game strategy."
+        },
+        "connect4": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 100.0,
+          "median_ms": 739.2,
+          "p95_ms": 907.2,
+          "repeated_median_ms": 830.4,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "connect4",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 12,
+              "score": 0,
+              "done": false,
+              "player": 1,
+              "last_opponent_column": 7
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Play as player 1. Choose the legal column with the highest minimax score after your move, searching four further plies with player 2 to move first. Terminal wins outrank the symmetric window and center heuristic; quicker wins and later losses are preferred. All best-score ties are accepted. Player 2 replies with the same deterministic four-ply minimax search, breaking ties toward the center."
+        },
+        "blockstar": {
+          "trials": 16,
+          "valid": 16,
+          "errors": 0,
+          "agreement_pct": 31.2,
+          "median_ms": 2165.1,
+          "p95_ms": 31828.9,
+          "repeated_median_ms": 2251.5,
+          "timing_samples": 7,
+          "outcomes": [
+            {
+              "game": "blockstar",
+              "seed": 42,
+              "status": "turn_limit",
+              "turn": 16,
+              "distance_moved": 16,
+              "source_case": "fixture-replay-five-blocks",
+              "ordered_complete": 0,
+              "score": 0
+            }
+          ],
+          "timing_note": "Principal median/P95 use first-order trials excluding states identical to warmup. Repeated-order median is separate. Native caches can still reuse options and prefixes.",
+          "policy": "Choose a legal BlockStar slide by this exact lexicographic priority: first maximize ordered_complete (the consecutive target pieces already placed from the start of target_order); then minimize locked_disturbed (pieces of the currently completed prefix displaced by this slide); then minimize active_blocked_cells (other blocks' cells in the better of the active piece's vertical-then-horizontal and horizontal-then-vertical target corridors); then minimize active_distance (anchor Manhattan distance of the first unfinished target piece); then minimize total_distance (sum of all pieces' anchor Manhattan distances); then minimize slide_distance. These metrics are measured AFTER the slide. Any remaining exact tie is acceptable. This is a one-step progress heuristic, not globally optimal puzzle search.",
+          "original_trials": 2,
+          "original_valid": 2,
+          "original_agreement_pct": 0.0,
+          "original_median_ms": 31828.9,
           "original_note": "One original 20×18 board in two orders; timing uses the first order. Remaining seven boards and capped replay are smaller fixtures. No full original puzzle solve by these models is claimed."
         }
       }

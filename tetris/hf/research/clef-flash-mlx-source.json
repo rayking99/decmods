@@ -1,0 +1,37 @@
+{
+  "repo": "mlx-community/clef-flash-4bit",
+  "revision": "d9ec324f7992383bdfb7a0b4eed8b4b9d10f81be",
+  "upstream_repo": "Cloudflare/clef-flash",
+  "upstream_revision": "17f0b0ad64efb65d273590632833508766b2aae6",
+  "joint_head_unchanged": true,
+  "joint_head_sha256": "19cdcec8c81dc9212be320fff47462ab342fbc1278be4368fb3da71241cf5ba0",
+  "weight_bytes": 6193757576,
+  "loader_sha256": "2a8560f0668ea00e8d1c557b3861ec9b8ee9a1398f85de9e2d1745a636c79f50",
+  "quantization": {
+    "group_size": 64,
+    "bits": 4,
+    "mode": "affine"
+  },
+  "loader": "clef_mlx.load(path,backend=\"vlm\",head_dtype=mx.bfloat16)",
+  "inference": "engine.systemone(request,max_length=16384,truncate=False)",
+  "constraints": [
+    "Native choice IDs are sorted before encoding; exact probability ties use request order, and tournament group membership can differ",
+    "No request embedding or prefix cache in inspected native loader",
+    "Maximum-softmax confidence is the native value; four-decimal probability rounding is preserved",
+    "Text-only game evaluation does not establish vision/video performance"
+  ],
+  "verified_inference_files_sha256": {
+    "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+    "clef_mlx.py": "2a8560f0668ea00e8d1c557b3861ec9b8ee9a1398f85de9e2d1745a636c79f50",
+    "config.json": "c323f36eb35fb9349b2bde60b3e16ee3d86316e20a5166c91f4a0585286f0ec1",
+    "generation_config.json": "45707f8467bf4e54e112c6095a1b2d1f2d63651cf86816344cfff21f02dda0d4",
+    "joint_head.safetensors": "19cdcec8c81dc9212be320fff47462ab342fbc1278be4368fb3da71241cf5ba0",
+    "joint_head_config.json": "77efe959a38b5b17b241543e129e695f3c77465ece55a25985279bd8176279a0",
+    "model-00001-of-00002.safetensors": "39894f085d844004c8e5c2394e45b5ab66bce4637ecdf23d92bf7c85cb66238f",
+    "model-00002-of-00002.safetensors": "40258d3d4f7225a0acbb45f4d34693465b98c8e2c0a4b0a512e536750379fcf3",
+    "model.safetensors.index.json": "4518e4d98baed265cb25c5adb45839d5b69e0b9700f4bd573533392097bbb874",
+    "processor_config.json": "d89ef49ce9cd37fbf510158e13c1ef063d9286411c1ec9049932dbe0487143b1",
+    "tokenizer.json": "a5cd9732badce41de57e6efce8302930ded1c1188c5f81feb2bd6c24c4a1941f",
+    "tokenizer_config.json": "7d884d6eaf8142a3343a933ca5ab6ccc2fa93d52591cdbbe2ea33559bb2b503a"
+  }
+}

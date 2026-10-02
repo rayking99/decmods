@@ -24,7 +24,7 @@ Every legal action reaches the native decision model. A shared 20-option group t
 
 Principal median and P95 timings use the first option-order pass, excluding warmups, states identical to a warmup, and model loading, and include all model calls for each decision. Repeated inputs are reported separately because native caches affect timing; even a first-order pass can reuse options or prefixes. Inference is serialized on one Apple M3 Max with 128 GB unified memory. Native heads, precisions, and prompt layouts differ. These small samples are descriptive, not universal model rankings.
 
-The tested variants are Nimble 9B, Tev1 4B and 0.8B, Winnow E4B, Julia-1, Laya English and multilingual, Kev 4B on MLX and MPS, CLM 8B, and Lev 4B. The exact installed checkpoints and runtime metadata are retained in the results. Jev-Omni's upstream loader requires CUDA, so no Mac result or substitute family is claimed.
+The tested variants are Nimble 9B, Tev1 4B and 0.8B, Winnow E4B, Julia-1, Laya English and multilingual, Kev 4B on MLX and MPS, CLM 8B, Lev 4B, and Clef Flash 9B on MLX 4-bit. The exact installed checkpoints and runtime metadata are retained in the results. Jev-Omni's upstream loader requires CUDA, so no Mac result or substitute family is claimed.
 
 For the already prepared local runtime assets:
 
@@ -34,6 +34,22 @@ python3 arcade/finalize.py
 ```
 
 The runner resumes completed variants. Downloads and environment setup follow the detailed [Tetris runtime notes](tetris/README.md); ignored model weights and upstream environments are not included in this repository. `--models nimble tev1:0.8b` limits a run to those explicit aliases.
+
+## Clef Flash MLX
+
+The requested [MLX 4-bit conversion](https://huggingface.co/mlx-community/clef-flash-4bit) is pinned to `d9ec324f7992383bdfb7a0b4eed8b4b9d10f81be`. Its 9B backbone uses affine 4-bit quantization with group size 64; the vision encoder and original joint schema head remain BF16. The downloaded Safetensors total 6.194 GB. The head's SHA-256 exactly matches the pinned Cloudflare release. [Source provenance](tetris/hf/research/clef-flash-mlx-source.json) and [native smoke evidence](tetris/hf/research/clef-mlx-smoke.json) capture the checks.
+
+The bundled `clef_mlx.py` runs the backbone and decision head together. Ordinary chat generation does not expose that head. Before loading, our loopback server verifies the backbone/head shards, tokenizer, configuration and loader against the archived pinned manifest. It preserves native choice, score and boolean responses, uses Metal, and sets `truncate=False` with a 16,384-token maximum. Oversized requests are rejected. Native confidence is the maximum softmax probability; no adapter temperature or concentration transform is added. Clef sorts choice IDs before encoding, so reordering an identical option set does not change its encoded positions; tournament group membership can still differ, and native exact-probability ties use request order. The inspected loader has no persistent request or prefix cache.
+
+Clef is measured in a subsequent serialized run on the same hardware and frozen cases, with each environment's original shared tournament protocol. Earlier model traces are retained. Its Tetris principal latency uses the first option-order pass, with repeated-pass timing reported separately. These game tests use text/JSON state; they do not measure image or video quality.
+
+```sh
+uv sync --project tetris/hf/clef_runtime --locked
+tetris/hf/clef_runtime/.venv/bin/python tetris/hf/clef_runtime/download.py
+tetris/hf/clef_runtime/.venv/bin/python tetris/hf/clef_runtime/server.py --port 11444
+```
+
+With the native server running, capture `/v1/models` to a metadata JSON, then run `tetris/hf/run_clef_benchmark.py --metadata <path>` for Tetris. `arcade/run_models.py --models clef-flash:mlx-4bit` and its `--updated-blockstar` variant run the other frozen suites. Each recorded response retains the exact revision, native loader/head hashes, quantization and locked dependency versions.
 
 ## BlockStar reference comparison
 
@@ -49,7 +65,7 @@ The modern source is separately pinned to [`fed370f`](https://github.com/rayking
 
 The original layout's 183 legal slides remain equivalent. The updated large yard is 28×30 with 24 movable blocks, 48 fixed terrain cells, and 393 initial legal slides. Our independent adapter verifies every initial endpoint against the source referee. Fixed `#` cells cannot move or be crossed.
 
-The supplemental [frozen suite](arcade/updated/suite.json) tests both official initial layouts in two option orders through all eleven runtimes. It uses a declared sorted-label goal-prefix policy; the upstream solver discovers its own order and imposes no mandatory target order. These are four one-step probes per model, with a distinct warmup and separate first/repeated-order timings. They do not measure a complete model solve or provide a latency distribution.
+The supplemental [frozen suite](arcade/updated/suite.json) tests both official initial layouts in two option orders through all twelve runtimes. It uses a declared sorted-label goal-prefix policy; the upstream solver discovers its own order and imposes no mandatory target order. These are four one-step probes per model, with a distinct warmup and separate first/repeated-order timings. They do not measure a complete model solve or provide a latency distribution.
 
 Fresh native discovery found a 37-slide solution for the original layout in 29.890 seconds from 228 rollouts, and a 64-slide large-yard solution in 45.503 seconds from 200 rollouts. Both reach the exact target and are replayable on the site. Discovery time and certificate replay time are reported separately. The original solution reproduces the published champion's slide count with a different legal move ordering; the large-yard sequence also matches its published champion. Neither result proves global optimality.
 

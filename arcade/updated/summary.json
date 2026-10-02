@@ -13,7 +13,7 @@
     }
   ],
   "active": null,
-  "updated": "2026-10-01T11:43:58.972690+00:00",
+  "updated": "2026-10-02T10:22:27.683607+00:00",
   "models": [
     {
       "name": "nimble",
@@ -374,6 +374,39 @@
           "choices": [
             "A_up_9",
             "A_up_9"
+          ]
+        }
+      }
+    },
+    {
+      "name": "clef-flash:mlx-4bit",
+      "label": "Clef Flash 9B · MLX 4-bit",
+      "status": "complete",
+      "summary": {
+        "updated-default": {
+          "trials": 2,
+          "valid": 2,
+          "errors": 0,
+          "agreement_pct": 0.0,
+          "median_ms": 45096.7,
+          "repeated_median_ms": 43524.2,
+          "candidate_count": 183,
+          "choices": [
+            "M_up_8",
+            "A_up_8"
+          ]
+        },
+        "large-yard": {
+          "trials": 2,
+          "valid": 2,
+          "errors": 0,
+          "agreement_pct": 0.0,
+          "median_ms": 102861.1,
+          "repeated_median_ms": 91239.0,
+          "candidate_count": 393,
+          "choices": [
+            "L_left_2",
+            "L_left_6"
           ]
         }
       }

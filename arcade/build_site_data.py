@@ -1,6 +1,8 @@
 """Export compact, public replay data; omit duplicate raw API payloads."""
 import json
 import gzip
+import math
+import statistics
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -15,6 +17,73 @@ def save(name, data):
 def clean_snapshot(snapshot):
     # Recorded frames do not need a 625-integer Python RNG state. Full raw traces retain it.
     return {k:v for k,v in snapshot.items() if k not in ("rng_state", "rng")}
+
+
+def public_provenance(metadata):
+    """Retain source identity and runtime facts without local model paths."""
+    keys = ("repo", "checkpoint", "native_source", "source_commit", "backend", "version",
+            "device", "dtype", "precision", "quantization", "mlx", "mlx_lm", "torch",
+            "transformers", "ollaya", "cache", "prompt_layout", "versions", "option_order",
+            "confidence", "max_length", "truncation", "loader_sha256", "joint_head_sha256")
+    provenance = {key:metadata[key] for key in keys if key in metadata}
+    runtimes = [{key:runtime[key] for key in keys if key in runtime}
+                for runtime in metadata.get("models", [])]
+    if runtimes:
+        provenance["runtimes"] = runtimes
+        if "backend" not in provenance:
+            backend = next((runtime["backend"] for runtime in runtimes if "backend" in runtime),None)
+            if backend is not None:
+                provenance["backend"] = backend
+    return provenance
+
+
+def timing_quantile(values, fraction):
+    """Use the same linearly interpolated percentile as the Tetris runner."""
+    if not values:
+        return None
+    ordered = sorted(values)
+    position = (len(ordered)-1)*fraction
+    lo,hi = math.floor(position),math.ceil(position)
+    value = ordered[lo] if lo == hi else ordered[lo]*(hi-position)+ordered[hi]*(position-lo)
+    return round(value,1)
+
+
+def trace_state_signature(trace):
+    """The complete recorded API state, before option ordering or inference."""
+    for call in trace.get("calls", []):
+        request = call.get("request", {})
+        if "state" in request:
+            return json.dumps(request["state"],sort_keys=True,separators=(",", ":"))
+    return None
+
+
+def first_order_timing(model):
+    """Compare matched first/repeated cohorts, excluding the warmed API state."""
+    warm_state = trace_state_signature(model.get("warmup", {}))
+    first,repeated,excluded = [],[],[]
+    eligible_cases = set()
+    for trial in model.get("trials", []):
+        trace = trial.get("decision", {})
+        latency = trace.get("latency_ms")
+        if trial.get("error") or trial.get("order") != 0 or not isinstance(latency,(int,float)) or not math.isfinite(latency):
+            continue
+        if warm_state is not None and trace_state_signature(trace) == warm_state:
+            excluded.append(trial["case"])
+            continue
+        first.append(latency)
+        eligible_cases.add(trial["case"])
+    for trial in model.get("trials", []):
+        latency = trial.get("decision", {}).get("latency_ms")
+        if (not trial.get("error") and trial.get("order") == 1 and trial.get("case") in eligible_cases
+                and isinstance(latency,(int,float)) and math.isfinite(latency)):
+            repeated.append(latency)
+    return {"median_ms":round(statistics.median(first),1) if first else None,
+            "p95_ms":timing_quantile(first,.95),
+            "repeated_median_ms":round(statistics.median(repeated),1) if repeated else None,
+            "repeated_p95_ms":timing_quantile(repeated,.95),
+            "first_order_samples":len(first), "repeated_order_samples":len(repeated),
+            "excluded_warmup_cases":excluded, "warmup_state_recorded":warm_state is not None,
+            "method":"Order-0 full-decision timing; cases whose complete recorded API state equals warmup are excluded. Order-1 timing uses the same eligible cases. Loading and warmup are excluded; agreement still includes every frozen trial."}
 
 
 def reference_game(game, registered_moves, **metadata):
@@ -39,13 +108,39 @@ def main():
     tetris = ROOT.parent / "tetris/benchmarks"
     models = []
     summaries = []
+    audit = {"decisions":0,"valid_decisions":0,"errors":0,"moves":0,"games":0,"models":0}
     labels = {"nimble":"Nimble 9B · Ollama Q8", "tev1:4b":"Tev1 4B · Ollama Q8", "tev1:0.8b":"Tev1 0.8B · Ollama Q8"}
     for folder in (tetris, tetris / "huggingface"):
         source = json.loads((folder / "results.json").read_text())
         for model in source["models"]:
+            trials = model.get("trials", [])
+            audit["decisions"] += len(trials)
+            audit["valid_decisions"] += sum(not trial.get("error") and "decision" in trial for trial in trials)
+            audit["errors"] += sum(bool(trial.get("error")) for trial in trials)
+            audit["games"] += len(model.get("games", []))
+            audit["moves"] += sum(len(game.get("moves", [])) for game in model.get("games", []))
+            audit["models"] += 1
             name = "kev:4b-mps" if model["name"] == "kev-latest" else model["name"]
             label = labels.get(name,model.get("label",name))
-            summaries.append({"name":name, "label":label, "status":model["status"], "summary":model["summary"]})
+            provenance = public_provenance(model.get("metadata", {}))
+            protocol = model.get("protocol",model.get("metadata", {}).get("protocol"))
+            summary = dict(model["summary"])
+            entry = {"name":name, "label":label, "status":model["status"], "summary":summary,
+                     "provenance":provenance}
+            if provenance.get("backend"):
+                entry["runtime"] = provenance["backend"]
+            if protocol is not None:
+                entry["protocol"] = protocol
+            if name == "clef-flash:mlx-4bit":
+                fresh = first_order_timing(model)
+                summary["all_order_timing"] = {key:summary.get(key) for key in ("mean_placement_ms","median_placement_ms","p95_placement_ms")}
+                summary["median_placement_ms"] = fresh["median_ms"]
+                summary["p95_placement_ms"] = fresh["p95_ms"]
+                summary["repeated_median_ms"] = fresh["repeated_median_ms"]
+                summary["timing_note"] = fresh["method"]
+                summary["fresh_timing"] = fresh
+                entry["fresh_timing"] = fresh
+            summaries.append(entry)
             games = []
             for game in model["games"]:
                 moves = []
@@ -56,7 +151,10 @@ def main():
                                     "calls":[{"latency_ms":c["latency_ms"], "choice":c["answer"]["choice"]} for c in decision["calls"]], "choice":decision["choice"],
                                     "probabilities":decision.get("probabilities", {}), "source":decision["source"]}})
                 games.append({"seed":game["seed"], "status":game["status"], "moves":moves})
-            models.append({"name":name, "label":label, "games":games})
+            replay = {"name":name, "label":label, "games":games,"provenance":provenance}
+            if protocol is not None:
+                replay["protocol"] = protocol
+            models.append(replay)
     cache = json.loads((tetris / "huggingface/cache-analysis.json").read_text())
     for model in summaries:
         if model["name"] == "clm:8b-mps":
@@ -65,9 +163,10 @@ def main():
             model["summary"]["timing_note"] = "First-order timing; repeated embedding cache hits excluded from principal median."
             model["fresh_timing"] = {"median_ms":cache["first_order_median_ms"], "p95_ms":cache["first_order_p95_ms"],
                                      "repeated_median_ms":cache["repeated_order_median_ms"]}
-    save("tetris-summary.json", {"status":"complete", "models":summaries,
+            model["summary"]["fresh_timing"] = model["fresh_timing"]
+    save("tetris-summary.json", {"status":"complete" if all(model["status"] == "complete" for model in summaries) else "running", "models":summaries,
         "method":"32 frozen boards in two orders; separate capped games with seeds 42 and 123. Agreement follows a disclosed one-step policy, not optimal Tetris play. Earlier matched run, separately timed.",
-        "hardware":"Apple M3 Max, 128 GB unified memory", "cache_analysis":cache, "audit":{"decisions":704,"moves":742}})
+        "hardware":"Apple M3 Max, 128 GB unified memory", "cache_analysis":cache, "audit":audit})
     save("tetris-replays.json", {"models":models})
     from benchmark import load_results, summarize
     results = load_results()
@@ -78,7 +177,7 @@ def main():
             metadata = model.get("metadata", {})
             summary["models"].append({"name":model["name"], "label":model["label"], "status":model["status"],
                 "games":summarize(model),
-                "provenance":{k:metadata[k] for k in ("repo","checkpoint","native_source","backend","version") if k in metadata}})
+                "provenance":public_provenance(metadata)})
         save("arcade-summary.json", summary)
         replays = []
         for model in results["models"]:

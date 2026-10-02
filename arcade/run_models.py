@@ -26,6 +26,7 @@ SPECS = [
     ("kev:4b-mps", "Kev 4B · MPS BF16", "kev-mps", 11437),
     ("clm:8b-mps", "CLM 8B · MPS BF16", "clm", 11443),
     ("lev:4b-mps", "Lev 4B · MPS BF16", "lev", 11442),
+    ("clef-flash:mlx-4bit", "Clef Flash 9B · MLX 4-bit", "clef-mlx", 11444),
 ]
 
 
@@ -54,6 +55,9 @@ def launch(kind, model, port):
     if kind == "winnow":
         environment.update(OLLAYA_HOST=f"127.0.0.1:{port}", OLLAYA_MODELS=str(HF / "models/ollaya"))
         command = [str(HF / "runtime/bin/ollaya"), "serve"]
+    elif kind == "clef-mlx":
+        command = [str(HF / "clef_runtime/.venv/bin/python"), str(HF / "clef_runtime/server.py"),
+                   "--port", str(port)]
     elif kind.startswith("kev"):
         environment.update(KEV_BACKEND="mlx" if kind == "kev-mlx" else "torch", KEV_DTYPE="bf16", KEV_PREFIX_CACHE="4")
         cwd = HF / "vendor/kev"
@@ -105,10 +109,14 @@ def main():
                     "winnow": "winnow-e4b-runtime.json", "julia": "julia-1-mps-runtime.json",
                     "laya": "laya-runtime.json", "laya-multilingual": "laya-multilingual-mps-runtime.json",
                     "kev-mlx": "kev-4b-mlx-runtime.json", "kev-mps": "kev-mps-runtime.json",
-                    "clm": "clm-8b-mps-runtime.json", "lev": "lev-4b-mps-runtime.json"}[kind]
+                    "clm": "clm-8b-mps-runtime.json", "lev": "lev-4b-mps-runtime.json",
+                    "clef-mlx": "clef-mlx-runtime.json"}[kind]
                 archived = json.loads(archived_path.read_text())
                 metadata = {**{k:v for k,v in archived.items() if k not in ("models", "loader_probe")}, **metadata,
                             "metadata_captured": datetime.now(timezone.utc).isoformat()}
+                if kind == "clef-mlx":
+                    card = next(m for m in metadata["models"] if m["model"] == model)
+                    metadata = {**card, **metadata}
             if kind == "winnow":
                 from benchmark import Decision
                 from games import Game2048
